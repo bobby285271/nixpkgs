@@ -13725,6 +13725,8 @@ in
 
   kustomize = callPackage ../development/tools/kustomize { };
 
+  kustomize_3 = callPackage ../development/tools/kustomize/3.nix { };
+
   kustomize-sops = callPackage ../development/tools/kustomize/kustomize-sops.nix { };
 
   ktlint = callPackage ../development/tools/ktlint { };
@@ -14853,6 +14855,8 @@ in
   };
 
   directfb = callPackage ../development/libraries/directfb { };
+
+  discordchatexporter-cli = callPackage ../tools/backup/discordchatexporter-cli { };
 
   discord-rpc = callPackage ../development/libraries/discord-rpc {
     inherit (darwin.apple_sdk.frameworks) AppKit;
@@ -17833,6 +17837,8 @@ in
   pslib = callPackage ../development/libraries/pslib { };
 
   pstreams = callPackage ../development/libraries/pstreams {};
+
+  pufferpanel = callPackage ../servers/pufferpanel { };
 
   pugixml = callPackage ../development/libraries/pugixml { };
 
@@ -21075,7 +21081,7 @@ in
 
   # Update this when adding the newest kernel major version!
   # And update linux_latest_for_hardened below if the patches are already available
-  linuxPackages_latest = linuxPackages_5_12;
+  linuxPackages_latest = linuxPackages_5_13;
   linux_latest = linuxPackages_latest.kernel;
 
   # Realtime kernel packages.
@@ -23270,6 +23276,8 @@ in
 
   communi = libsForQt5.callPackage ../applications/networking/irc/communi { };
 
+  complete-alias = callPackage ../tools/misc/complete-alias { };
+
   confclerk = callPackage ../applications/misc/confclerk { };
 
   copyq = libsForQt514.callPackage ../applications/misc/copyq { };
@@ -24850,6 +24858,8 @@ in
   irssi = callPackage ../applications/networking/irc/irssi { };
 
   irssi_fish = callPackage ../applications/networking/irc/irssi/fish { };
+
+  kirc = callPackage ../applications/networking/irc/kirc { };
 
   ir.lv2 = callPackage ../applications/audio/ir.lv2 { };
 

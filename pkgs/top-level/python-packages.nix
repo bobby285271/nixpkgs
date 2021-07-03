@@ -325,6 +325,8 @@ in {
 
   aiomultiprocess = callPackage ../development/python-modules/aiomultiprocess { };
 
+  aiomusiccast = callPackage ../development/python-modules/aiomusiccast { };
+
   aiomysql = callPackage ../development/python-modules/aiomysql { };
 
   aionotify = callPackage ../development/python-modules/aionotify { };
@@ -5233,6 +5235,8 @@ in {
 
   phonenumbers = callPackage ../development/python-modules/phonenumbers { };
 
+  netmap = callPackage ../development/python-modules/netmap { };
+
   openapi-core = callPackage ../development/python-modules/openapi-core { };
 
   pdunehd = callPackage ../development/python-modules/pdunehd { };
@@ -5322,6 +5326,8 @@ in {
   pyfireservicerota = callPackage ../development/python-modules/pyfireservicerota { };
 
   pyflick = callPackage ../development/python-modules/pyflick { };
+
+  pyfreedompro = callPackage ../development/python-modules/pyfreedompro { };
 
   pygti = callPackage ../development/python-modules/pygti { };
 
