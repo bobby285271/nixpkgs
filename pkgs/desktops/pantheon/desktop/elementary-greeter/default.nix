@@ -13,6 +13,7 @@
 , gtk3
 , granite
 , libgee
+, libhandy
 , elementary-settings-daemon
 , mutter
 , elementary-icon-theme
@@ -29,7 +30,7 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-greeter";
-  version = "5.0.4";
+  version = "6.0.0";
 
   repoName = "greeter";
 
@@ -37,7 +38,7 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "sha256-Enn+ekALWbk7FVJJuea/rNiwEZDIyb3kyMcZNNraOv8=";
+    sha256 = "1ny1003bbpdscc4kr2d94zc5vxm30y64dpj3fpd5zz2p2g0cq2h9";
   };
 
   passthru = {
@@ -70,6 +71,7 @@ stdenv.mkDerivation rec {
     granite
     gtk3
     libgee
+    libhandy
     lightdm
     mutter
     wingpanel-with-indicators
