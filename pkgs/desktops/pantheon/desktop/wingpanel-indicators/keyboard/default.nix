@@ -14,17 +14,18 @@
 , libgee
 , xorg
 , libgnomekbd
+, ibus
 }:
 
 stdenv.mkDerivation rec {
   pname = "wingpanel-indicator-keyboard";
-  version = "2.2.1";
+  version = "2.4.0";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "sha256-/sTx0qT7gNj1waQg9OKqHY6MtL+p0NljiIAXKA3DYmA=";
+    sha256 = "10zzsil5l6snz47nx887r22sl2n0j6bg4dhxmgk3j3xp3jhgmrgl";
   };
 
   passthru = {
@@ -44,6 +45,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     granite
     gtk3
+    ibus
     libgee
     wingpanel
     xorg.xkeyboardconfig
