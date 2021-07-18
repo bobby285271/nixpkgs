@@ -164,10 +164,10 @@ in
       };
       # Use gnome-settings-daemon fork
       services.udev.packages = [
-        pkgs.gnome.gnome-settings-daemon334
+        pkgs.gnome.gnome-settings-daemon336
       ];
       systemd.packages = [
-        pkgs.gnome.gnome-settings-daemon334
+        pkgs.gnome.gnome-settings-daemon336
       ];
       programs.dconf.enable = true;
       networking.networkmanager.enable = mkDefault true;
@@ -215,7 +215,7 @@ in
       ]) ++ (gnome.removePackagesByName [
         gnome.epiphany
         gnome.gnome-font-viewer
-        gnome.gnome-settings-daemon334
+        gnome.gnome-settings-daemon336
       ] config.environment.pantheon.excludePackages);
 
       programs.evince.enable = mkDefault true;

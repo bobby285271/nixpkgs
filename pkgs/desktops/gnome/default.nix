@@ -91,8 +91,6 @@ lib.makeScope pkgs.newScope (self: with self; {
   # Pantheon is using ubuntu and elementary's patchset due to reasons
   # explained here -> https://github.com/elementary/greeter/issues/92#issuecomment-376215614
   # Take note of "I am holding off on "fixing" this bug for as long as possible."
-  gnome-settings-daemon334 = callPackage ./core/gnome-settings-daemon/3.34 { };
-
   gnome-settings-daemon336 = callPackage ./core/gnome-settings-daemon/3.36 { };
 
   gnome-software = callPackage ./core/gnome-software { };
