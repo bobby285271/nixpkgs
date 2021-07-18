@@ -31,7 +31,7 @@ lib.makeScope pkgs.newScope (self: with self; {
   # We're using ubuntu and elementary's patchset due to reasons
   # explained here -> https://github.com/elementary/greeter/issues/92#issuecomment-376215614
   # Take note of "I am holding off on "fixing" this bug for as long as possible."
-  gnome-settings-daemon = pkgs.gnome.gnome-settings-daemon334;
+  gnome-settings-daemon = pkgs.gnome.gnome-settings-daemon336;
 
   elementary-gsettings-schemas = callPackage ./desktop/elementary-gsettings-schemas { };
 
