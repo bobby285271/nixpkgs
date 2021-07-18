@@ -253,6 +253,8 @@ in
 
       # Default Fonts
       fonts.fonts = with pkgs; [
+        inter
+        open-dyslexic
         open-sans
         roboto-mono
       ];
