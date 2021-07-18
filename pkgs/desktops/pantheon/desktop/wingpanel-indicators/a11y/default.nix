@@ -1,36 +1,28 @@
 { lib, stdenv
-, substituteAll
 , fetchFromGitHub
 , nix-update-script
 , pantheon
 , meson
 , ninja
 , pkg-config
+, python3
 , vala
-, libgee
 , granite
 , gtk3
-, switchboard
-, onboard
+, libgee
+, wingpanel
 }:
 
 stdenv.mkDerivation rec {
-  pname = "switchboard-plug-a11y";
-  version = "2.3.0";
+  pname = "wingpanel-indicator-a11y";
+  version = "1.0.0";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "0dc5jv335j443rg08cb7p8wvmcg36wrf1vlcfg9r20cksdis9v4l";
+    sha256 = "1adx1sx9qh02hjgv5h0gwyn116shjl3paxmyaiv4cgh6vq3ndp3c";
   };
-
-  patches = [
-    (substituteAll {
-      src = ./fix-paths.patch;
-      inherit onboard;
-    })
-  ];
 
   passthru = {
     updateScript = nix-update-script {
@@ -42,6 +34,7 @@ stdenv.mkDerivation rec {
     meson
     ninja
     pkg-config
+    python3
     vala
   ];
 
@@ -49,14 +42,18 @@ stdenv.mkDerivation rec {
     granite
     gtk3
     libgee
-    pantheon.wingpanel-indicator-a11y
-    switchboard
+    wingpanel
   ];
 
+  postPatch = ''
+    chmod +x meson/post_install.py
+    patchShebangs meson/post_install.py
+  '';
+
   meta = with lib; {
-    description = "Switchboard Universal Access Plug";
-    homepage = "https://github.com/elementary/switchboard-plug-a11y";
-    license = licenses.lgpl3Plus;
+    description = "Universal Access Indicator for Wingpanel";
+    homepage = "https://github.com/elementary/wingpanel-indicator-a11y";
+    license = licenses.lgpl21Plus;
     platforms = platforms.linux;
     maintainers = pantheon.maintainers;
   };
