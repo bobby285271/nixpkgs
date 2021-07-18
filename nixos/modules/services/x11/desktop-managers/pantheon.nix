@@ -164,10 +164,10 @@ in
       };
       # Use gnome-settings-daemon fork
       services.udev.packages = [
-        pkgs.pantheon.elementary-settings-daemon
+        pkgs.gnome.gnome-settings-daemon334
       ];
       systemd.packages = [
-        pkgs.pantheon.elementary-settings-daemon
+        pkgs.gnome.gnome-settings-daemon334
       ];
       programs.dconf.enable = true;
       networking.networkmanager.enable = mkDefault true;

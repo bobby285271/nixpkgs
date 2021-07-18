@@ -10,6 +10,7 @@
 , libgee
 , granite
 , gexiv2
+, gnome-settings-daemon
 , elementary-settings-daemon
 , gtk3
 , gnome-desktop
@@ -51,6 +52,7 @@ stdenv.mkDerivation rec {
     bamf
     elementary-dock
     elementary-settings-daemon
+    gnome-settings-daemon
     gala
     gexiv2
     glib

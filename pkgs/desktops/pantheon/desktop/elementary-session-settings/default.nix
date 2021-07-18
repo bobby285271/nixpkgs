@@ -11,7 +11,7 @@
 , orca
 , onboard
 , elementary-default-settings
-, elementary-settings-daemon
+, gnome-settings-daemon
 , runtimeShell
 , writeText
 , meson
@@ -109,7 +109,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    pantheon.elementary-settings-daemon
+    pantheon.gnome-settings-daemon
     gnome-keyring
     onboard
     orca

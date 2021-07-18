@@ -8,7 +8,7 @@
 , pkg-config
 , vala
 , libgee
-, elementary-settings-daemon
+, gnome-settings-daemon
 , granite
 , gtk3
 , glib
@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     dbus
-    elementary-settings-daemon
+    gnome-settings-daemon
     glib
     granite
     gtk3

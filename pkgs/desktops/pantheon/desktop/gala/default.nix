@@ -21,7 +21,7 @@
 , clutter
 , elementary-dock
 , elementary-icon-theme
-, elementary-settings-daemon
+, gnome-settings-daemon
 , wrapGAppsHook
 , gexiv2
 }:
@@ -60,7 +60,7 @@ stdenv.mkDerivation rec {
     clutter
     elementary-dock
     elementary-icon-theme
-    elementary-settings-daemon
+    gnome-settings-daemon
     gexiv2
     gnome-desktop
     granite

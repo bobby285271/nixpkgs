@@ -154,13 +154,13 @@ stdenv.mkDerivation rec {
   passthru = {
     updateScript = gnome.updateScript {
       packageName = repoName;
-      attrPath = "pantheon.${pname}";
+      attrPath = "gnome.${pname}";
     };
   };
 
   meta = with lib; {
     license = licenses.gpl2Plus;
-    maintainers = pantheon.maintainers;
+    maintainers = teams.gnome.members;
     platforms = platforms.linux;
   };
 }
