@@ -11,12 +11,11 @@
 , polkit
 , accountsservice
 , python3
-, fetchpatch
 }:
 
 stdenv.mkDerivation rec {
   pname = "elementary-default-settings";
-  version = "5.1.2";
+  version = "6.0.0";
 
   repoName = "default-settings";
 
@@ -24,7 +23,7 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "sha256-HKrDs2frEWVPpwyGNP+NikrjyplSXJj1hFMLy6kK4wM=";
+    sha256 = "171zg69yrpfi67gh2pkq5sxkxq85drgv8wlnbqp01zjwfr9a4ipl";
   };
 
   passthru = {
@@ -32,23 +31,6 @@ stdenv.mkDerivation rec {
       attrPath = "pantheon.${pname}";
     };
   };
-
-  patches = [
-    # Use new notifications
-    (fetchpatch {
-      url = "https://github.com/elementary/default-settings/commit/0658bb75b9f49f58b35746d05fb6c4b811f125e9.patch";
-      sha256 = "0wa7iq0vfp2av5v23w94a5844ddj4g48d4wk3yrp745dyrimg739";
-    })
-
-    # Fix media key syntax
-    (fetchpatch {
-      url = "https://github.com/elementary/default-settings/commit/332aefe1883be5dfe90920e165c39e331a53b2ea.patch";
-      sha256 = "0ypcaga55pw58l30srq3ga1mhz2w6hkwanv41jjr6g3ia9jvq69n";
-    })
-
-    # https://github.com/elementary/default-settings/pull/119
-    ./0001-Build-with-Meson.patch
-  ];
 
   nativeBuildInputs = [
     accountsservice
