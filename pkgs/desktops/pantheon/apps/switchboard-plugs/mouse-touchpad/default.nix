@@ -11,7 +11,7 @@
 , granite
 , gtk3
 , switchboard
-, elementary-settings-daemon
+, gnome-settings-daemon
 , glib
 }:
 
@@ -45,7 +45,7 @@ stdenv.mkDerivation rec {
     gtk3
     libgee
     libxml2
-    elementary-settings-daemon
+    gnome-settings-daemon
     switchboard
   ];
 

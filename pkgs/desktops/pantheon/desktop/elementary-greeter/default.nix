@@ -14,7 +14,7 @@
 , granite
 , libgee
 , libhandy
-, elementary-settings-daemon
+, gnome-settings-daemon
 , mutter
 , elementary-icon-theme
 , wingpanel-with-indicators
@@ -66,7 +66,7 @@ stdenv.mkDerivation rec {
     clutter-gtk # else we get could not generate cargs for mutter-clutter-2
     elementary-gtk-theme
     elementary-icon-theme
-    elementary-settings-daemon
+    gnome-settings-daemon
     gdk-pixbuf
     granite
     gtk3
@@ -84,7 +84,7 @@ stdenv.mkDerivation rec {
     "--sysconfdir=/etc"
     # We use the patched gnome-settings-daemon
     "-Dubuntu-patched-gsd=true"
-    "-Dgsd-dir=${elementary-settings-daemon}/libexec/" # trailing slash is needed
+    "-Dgsd-dir=${gnome-settings-daemon}/libexec/" # trailing slash is needed
   ];
 
   patches = [

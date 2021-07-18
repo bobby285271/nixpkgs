@@ -56,6 +56,8 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
+    description = "Settings daemon for Pantheon";
+    homepage = "https://github.com/elementary/settings-daemon";
     license = licenses.gpl3Plus;
     maintainers = pantheon.maintainers;
     platforms = platforms.linux;
