@@ -89,16 +89,16 @@ let
 in
 
 stdenv.mkDerivation rec {
-  pname = "elementary-session-settings-unstable";
-  version = "2020-07-06";
+  pname = "elementary-session-settings";
+  version = "6.0.0";
 
   repoName = "session-settings";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = repoName;
-    rev = "fa15cbd83fba0ba30e9a302db880350bff5ace52";
-    hash = "sha256-26H791c7OAjFYtjVChIatICSocMt0uTej1TKBOvw+6w=";
+    rev = version;
+    sha256 = "1faglpa7q3a4335gnd074a3lnsdspyjdnskgy4bfnf6xmwjx7kjx";
   };
 
   nativeBuildInputs = [
