@@ -73,7 +73,7 @@ stdenv.mkDerivation rec {
     "${patchPath}/revert-mediakeys-dbus-interface-drop.patch"
     #"${patchPath}/ubuntu_ibus_configs.patch"
     # https://github.com/elementary/os-patches/blob/6975d1c254cb6ab913b8e2396877203aea8eaa65/debian/patches/elementary-dpms.patch
-    # ./elementary-dpms.patch
+    ./elementary-dpms.patch
 
     # Query GWeather DB on the fly instead of caching.
     # Needed for the next patch to apply.
