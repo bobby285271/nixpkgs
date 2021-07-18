@@ -19,13 +19,13 @@
 
 stdenv.mkDerivation rec {
   pname = "wingpanel-indicator-sound";
-  version = "2.1.6";
+  version = "6.0.0";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "sha256-WGkxLsbdJ7Z7kolymYpggsVy4cN4CicNKdfCbunklSI=";
+    sha256 = "0cv97c0qrhqisyghy9a9qr4ffcx3g4bkswxm6rn4r2wfg4gvljri";
   };
 
   passthru = {
