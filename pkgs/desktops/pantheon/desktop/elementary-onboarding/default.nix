@@ -2,7 +2,6 @@
 , fetchFromGitHub
 , nix-update-script
 , pantheon
-, fetchpatch
 , pkg-config
 , meson
 , ninja
@@ -21,7 +20,7 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-onboarding";
-  version = "1.2.1";
+  version = "6.0.0";
 
   repoName = "onboarding";
 
@@ -29,19 +28,8 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "sha256-tLTwXA2miHqYqCUbIiBjb2nQB+uN/WzuE4F9m3fVCbM=";
+    sha256 = "1mpw0j8ymb41py9v9qlk4nwy1lnwj7k388c7gqdv34ynck0ymfi4";
   };
-
-  patches = [
-    # Port to Libhandy-1
-    (fetchpatch {
-      url = "https://github.com/elementary/onboarding/commit/8af6b7d9216f8cbf725f708b36ef4d4f6c400c78.patch";
-      sha256 = "cnSCSSFEQlNd9Ncw5VCJ32stZ8D4vhl3f+derAk/Cas=";
-      excludes = [
-        ".github/workflows/main.yml"
-      ];
-    })
-  ];
 
   passthru = {
     updateScript = nix-update-script {
