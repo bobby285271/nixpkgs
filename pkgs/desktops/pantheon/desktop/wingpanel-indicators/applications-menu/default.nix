@@ -1,6 +1,5 @@
 { lib, stdenv
 , fetchFromGitHub
-, fetchpatch
 , nix-update-script
 , pantheon
 , substituteAll
@@ -29,7 +28,7 @@
 
 stdenv.mkDerivation rec {
   pname = "wingpanel-applications-menu";
-  version = "2.7.1";
+  version = "2.8.0";
 
   repoName = "applications-menu";
 
@@ -37,7 +36,7 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "sha256-NeazBzkbdQTC6OzPxxyED4OstMkNkUGtCIaZD67fTnM=";
+    sha256 = "1n0l384jrvakr3blbjriyg9ibmzm1wi7ds0dq9zy666v8yknm7zm";
   };
 
   passthru = {
@@ -83,12 +82,6 @@ stdenv.mkDerivation rec {
   ];
 
   patches = [
-    # Port to Libhandy-1
-    (fetchpatch {
-      url = "https://github.com/elementary/applications-menu/commit/8eb2430e8513e9d37f875c5c9b8b15a968c27127.patch";
-      sha256 = "8Uw9mUw7U5nrAwUDGVpAwoRqb9ah503wQCr9kPbBJIo=";
-    })
-
     (substituteAll {
       src = ./fix-paths.patch;
       bc = "${bc}/bin/bc";
