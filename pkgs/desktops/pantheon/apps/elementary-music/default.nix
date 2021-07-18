@@ -31,7 +31,7 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-music";
-  version = "5.1.0";
+  version = "5.1.1";
 
   repoName = "music";
 
@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
     owner = "elementary";
     repo = repoName;
     rev = version;
-    sha256 = "13v7rii9ardyd661s6d4hvvs4ig44v7s3qd1bx7imaigr72gg58b";
+    sha256 = "1wqsn4ss9acg0scaqpg514ll2dj3bl71wly4mm79qkinhy30yv9n";
   };
 
   passthru = {
@@ -84,7 +84,7 @@ stdenv.mkDerivation rec {
   ];
 
   mesonFlags = [
-    "-Dplugins=lastfm,audioplayer,cdrom,ipod"
+    "-Dplugins=audioplayer,cdrom,ipod"
   ];
 
   postPatch = ''
