@@ -215,6 +215,7 @@ in
       ]) ++ (gnome.removePackagesByName [
         gnome.epiphany
         gnome.gnome-font-viewer
+        gnome.gnome-settings-daemon334
       ] config.environment.pantheon.excludePackages);
 
       programs.evince.enable = mkDefault true;
