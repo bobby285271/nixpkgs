@@ -8,6 +8,7 @@
 , glib
 , granite
 , libgee
+, libhandy
 , libcanberra-gtk3
 , pantheon
 , python3
@@ -16,15 +17,15 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-notifications";
-  version = "unstable-2020-03-31";
+  version = "unstable-2020-07-14";
 
   repoName = "notifications";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = repoName;
-    rev = "db552b0c3466ba1099c7737c353b7225ab1896cc";
-    sha256 = "1fhf4zx73qka935x5afv6zqsm2l37d1mjbhrbzzzz44dqwa2vp16";
+    rev = "3fff6ed8c604a0f799fd88bd4b5a844c0495ed65";
+    sha256 = "1x30y31zqm1bkykms2gpjv5zxcd35hdl497lq5czd75yfz888z2l";
   };
 
   nativeBuildInputs = [
@@ -43,6 +44,7 @@ stdenv.mkDerivation rec {
     gtk3
     libcanberra-gtk3
     libgee
+    libhandy
   ];
 
   postPatch = ''
