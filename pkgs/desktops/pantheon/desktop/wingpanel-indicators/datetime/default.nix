@@ -13,6 +13,7 @@
 , evolution-data-server
 , libical
 , libgee
+, libhandy
 , libxml2
 , libsoup
 , libgdata
@@ -21,13 +22,13 @@
 
 stdenv.mkDerivation rec {
   pname = "wingpanel-indicator-datetime";
-  version = "2.2.5";
+  version = "2.3.0";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "sha256-rZzZIh4bwZfwQFDbfPDKQtfLMJQ2IdykH1yiV6ckqnw=";
+    sha256 = "1mdm0fsnmmyw8c0ik2jmfri3kas9zkz1hskzf8wvbd51vnazfpgw";
   };
 
   passthru = {
@@ -50,6 +51,7 @@ stdenv.mkDerivation rec {
     granite
     gtk3
     libgee
+    libhandy
     libical
     libsoup
     wingpanel
