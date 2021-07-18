@@ -93,6 +93,8 @@ lib.makeScope pkgs.newScope (self: with self; {
   # Take note of "I am holding off on "fixing" this bug for as long as possible."
   gnome-settings-daemon334 = callPackage ./core/gnome-settings-daemon/3.34 { };
 
+  gnome-settings-daemon336 = callPackage ./core/gnome-settings-daemon/3.36 { };
+
   gnome-software = callPackage ./core/gnome-software { };
 
   gnome-system-monitor = callPackage ./core/gnome-system-monitor { };
