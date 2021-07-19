@@ -13,6 +13,7 @@
 , gtk3
 , granite
 , libgee
+, libhandy
 , gst_all_1
 , libcanberra
 , clutter-gtk
@@ -24,15 +25,15 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-camera";
-  version = "1.0.6";
+  version = "unstable-2021-07-19";
 
   repoName = "camera";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = repoName;
-    rev = version;
-    sha256 = "sha256-asl5NdSuLItXebxvqGlSEjwWhdButmka12YQAYkQT44=";
+    rev = "7834055034e8da28fa5c9a3ebedd1e3fd4e15818";
+    sha256 = "0adl3wpv1xanlj65yzgaz1ish9mx9s6rilldi9xcw8xawmjbkhyy";
   };
 
   passthru = {
@@ -66,6 +67,7 @@ stdenv.mkDerivation rec {
     gtk3
     libcanberra
     libgee
+    libhandy
   ];
 
   postPatch = ''
