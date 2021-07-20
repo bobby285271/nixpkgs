@@ -146,9 +146,9 @@ stdenv.mkDerivation rec {
   '';
 
   postFixup = ''
-    # So the polkit policy can reference /run/current-system/sw/bin/gnome-settings-daemon/gsd-backlight-helper
-    mkdir -p $out/bin/gnome-settings-daemon
-    ln -s $out/libexec/gsd-backlight-helper $out/bin/gnome-settings-daemon/gsd-backlight-helper
+    # So the polkit policy can reference /run/current-system/sw/bin/gsd-backlight-helper
+    mkdir -p $out/bin
+    ln -s $out/libexec/gsd-backlight-helper $out/bin/gsd-backlight-helper
   '';
 
   passthru = {
@@ -159,6 +159,8 @@ stdenv.mkDerivation rec {
   };
 
   meta = with lib; {
+    description = "GNOME Settings Daemon";
+    homepage = "https://git.launchpad.net/ubuntu/+source/gnome-settings-daemon";
     license = licenses.gpl2Plus;
     maintainers = teams.gnome.members;
     platforms = platforms.linux;

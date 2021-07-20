@@ -7,7 +7,7 @@ index d7d10fd2..5619d6ad 100644
                                           &error,
                                           "pkexec",
 -                                         LIBEXECDIR "/gsd-backlight-helper",
-+                                         "/run/current-system/sw/bin/gnome-settings-daemon/gsd-backlight-helper",
++                                         "/run/current-system/sw/bin/gsd-backlight-helper",
                                           g_udev_device_get_sysfs_path (backlight->udev_device),
                                           data->value_str, NULL);
          } else {
@@ -20,7 +20,7 @@ index f16300f8..79d6bd17 100644
        <allow_active>yes</allow_active>
      </defaults>
 -    <annotate key="org.freedesktop.policykit.exec.path">@libexecdir@/gsd-backlight-helper</annotate>
-+    <annotate key="org.freedesktop.policykit.exec.path">/run/current-system/sw/bin/gnome-settings-daemon/gsd-backlight-helper</annotate>
++    <annotate key="org.freedesktop.policykit.exec.path">/run/current-system/sw/bin/gsd-backlight-helper</annotate>
    </action>
 
  </policyconfig>
