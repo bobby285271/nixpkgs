@@ -15,6 +15,7 @@
 , gtk3
 , granite
 , libgee
+, wrapGAppsHook
 }:
 
 stdenv.mkDerivation rec {
@@ -37,6 +38,7 @@ stdenv.mkDerivation rec {
     pkg-config
     python3
     vala
+    wrapGAppsHook
   ];
 
   buildInputs = [
