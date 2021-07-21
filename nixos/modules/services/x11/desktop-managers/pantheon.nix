@@ -274,12 +274,12 @@ in
         elementary-mail
         elementary-music
         elementary-photos
-        elementary-screenshot-tool
+        elementary-screenshot
         elementary-terminal
         elementary-videos
       ] config.environment.pantheon.excludePackages);
 
-      # needed by screenshot-tool
+      # needed by screenshot
       fonts.fonts = [
         pkgs.pantheon.elementary-redacted-script
       ];
