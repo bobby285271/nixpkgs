@@ -49,6 +49,7 @@ stdenv.mkDerivation rec {
     granite
     gtk3
     libgee
+    pantheon.wingpanel-indicator-a11y
     switchboard
   ];
 
