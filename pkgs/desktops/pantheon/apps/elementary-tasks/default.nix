@@ -26,15 +26,15 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-tasks";
-  version = "unstable-2021-07-20";
+  version = "6.0.0";
 
   repoName = "tasks";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = repoName;
-    rev = "9f827b63085fc7f2a4e92834059860abf217d5aa";
-    sha256 = "13my4qzdzkdn3hc09w8f5i7q1iwsdq25v0i4i8awv77a1d03n7iq";
+    rev = version;
+    sha256 = "1a1sra886xdrjp5kwa6fafyl2acnaarwk9sw4cw5qyvlrqrg04ds";
   };
 
   passthru = {
