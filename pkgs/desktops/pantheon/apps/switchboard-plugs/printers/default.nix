@@ -1,7 +1,6 @@
 { lib, stdenv
 , fetchFromGitHub
 , nix-update-script
-, fetchpatch
 , pantheon
 , meson
 , ninja
@@ -16,22 +15,14 @@
 
 stdenv.mkDerivation rec {
   pname = "switchboard-plug-printers";
-  version = "2.1.9";
+  version = "2.1.10";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
     rev = version;
-    sha256 = "sha256-tnAJyyPN/Xy1pmlgBpgO2Eb5CeHrRltjQTHmuTPBt8s=";
+    sha256 = "0frvybbx7mcs87kww0if4zn0c6c2gb400cpiqrl8b0294py58xpb";
   };
-
-  patches = [
-    # Fix build with latest Vala.
-    (fetchpatch {
-      url = "https://github.com/elementary/switchboard-plug-printers/commit/5eced5ddda6f229d7265ea0a713f6c1cd181a526.patch";
-      sha256 = "lPTNqka6jjvv1JnAqVzVIQBIdDXlCOQ5ASvgZNuEUC8=";
-    })
-  ];
 
   passthru = {
     updateScript = nix-update-script {
