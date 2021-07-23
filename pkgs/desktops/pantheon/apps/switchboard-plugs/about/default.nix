@@ -14,6 +14,7 @@
 , gtk3
 , switchboard
 , elementary-feedback
+, appcenter
 , fwupd
 , appstream
 }:
@@ -54,8 +55,16 @@ stdenv.mkDerivation rec {
   ];
 
   patches = [
+    # VERSION in /etc/os-release is too long to display in swithboard
+    # https://github.com/elementary/switchboard-plug-about/pull/222
+    ./pretty-name.patch
+
+    # The NixOS logo is not centered in the circular background.
+    # Removing the background directly.
+    ./remove-logo-background.patch
     (substituteAll {
       src = ./fix-paths.patch;
+      appcenter = appcenter;
       elementary_feedback = elementary-feedback;
     })
   ];

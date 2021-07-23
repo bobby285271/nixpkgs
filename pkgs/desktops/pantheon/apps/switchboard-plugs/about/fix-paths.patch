@@ -1,8 +1,26 @@
+From 271a614eb0e465273cdac59175e60755e8cce13e Mon Sep 17 00:00:00 2001
+From: Bobby Rong <rjl931189261@126.com>
+Date: Fri, 23 Jul 2021 14:51:04 +0800
+Subject: [PATCH] OperatingSystemView: fix paths
+
+---
+ src/Views/OperatingSystemView.vala | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/src/Views/OperatingSystemView.vala b/src/Views/OperatingSystemView.vala
-index fdb92e7..d01c9fe 100644
+index c4667cd..9a9caee 100644
 --- a/src/Views/OperatingSystemView.vala
 +++ b/src/Views/OperatingSystemView.vala
-@@ -163,7 +163,7 @@ public class About.OperatingSystemView : Gtk.Grid {
+@@ -114,7 +114,7 @@ public class About.OperatingSystemView : Gtk.Grid {
+         var bug_button = new Gtk.Button.with_label (_("Send Feedback"));
+ 
+         Gtk.Button? update_button = null;
+-        var appcenter_info = new GLib.DesktopAppInfo ("io.elementary.appcenter.desktop");
++        var appcenter_info = new GLib.DesktopAppInfo ("@appcenter@/bin/io.elementary.appcenter.desktop");
+         if (appcenter_info != null) {
+             update_button = new Gtk.Button.with_label (_("Check for Updates"));
+             update_button.clicked.connect (() => {
+@@ -162,7 +162,7 @@ public class About.OperatingSystemView : Gtk.Grid {
          settings_restore_button.clicked.connect (settings_restore_clicked);
  
          bug_button.clicked.connect (() => {
