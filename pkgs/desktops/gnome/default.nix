@@ -112,6 +112,9 @@ lib.makeScope pkgs.newScope (self: with self; {
   # Needed for elementary's gala and greeter until support for higher versions is provided
   mutter338 = callPackage ./core/mutter/3.38 { };
 
+  # Used by Pantheon to match what elementary OS is using
+  mutter41 = callPackage ./core/mutter/41 { };
+
   nautilus = callPackage ./core/nautilus { };
 
   networkmanager-openvpn = pkgs.networkmanager-openvpn.override {
