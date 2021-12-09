@@ -88,9 +88,6 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   gnome-settings-daemon = callPackage ./core/gnome-settings-daemon { };
 
-  # Using 3.38 to match Mutter used in Pantheon
-  gnome-settings-daemon338 = callPackage ./core/gnome-settings-daemon/3.38 { };
-
   # Used by Pantheon to match what elementary OS is using
   gnome-settings-daemon41 = callPackage ./core/gnome-settings-daemon/41 { };
 
@@ -366,6 +363,8 @@ lib.makeScope pkgs.newScope (self: with self; {
   mutter328 = throw "Removed as Pantheon is upgraded to mutter41.";
 
   mutter334 = throw "Removed as Pantheon is upgraded to mutter41.";
+
+  gnome-settings-daemon338 = throw "Removed as Pantheon is upgraded to gnome-settings-daemon41.";
 
   gnome-getting-started-docs = throw "Removed in favour of gnome-tour.";
 
