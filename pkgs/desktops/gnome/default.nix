@@ -363,9 +363,9 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   maintainers = lib.teams.gnome.members;
 
-  mutter328 = throw "Removed as Pantheon is upgraded to mutter338.";
+  mutter328 = throw "Removed as Pantheon is upgraded to mutter41.";
 
-  mutter334 = throw "Removed as Pantheon is upgraded to mutter338.";
+  mutter334 = throw "Removed as Pantheon is upgraded to mutter41.";
 
   gnome-getting-started-docs = throw "Removed in favour of gnome-tour.";
 

@@ -166,10 +166,10 @@ in
         isSystem = true;
       };
       services.udev.packages = [
-        pkgs.gnome.gnome-settings-daemon338
+        pkgs.gnome.gnome-settings-daemon41
       ];
       systemd.packages = [
-        pkgs.gnome.gnome-settings-daemon338
+        pkgs.gnome.gnome-settings-daemon41
       ];
       programs.dconf.enable = true;
       networking.networkmanager.enable = mkDefault true;
@@ -215,7 +215,7 @@ in
         pantheon-agent-polkit
       ]) ++ (gnome.removePackagesByName [
         gnome.gnome-font-viewer
-        gnome.gnome-settings-daemon338
+        gnome.gnome-settings-daemon41
       ] config.environment.pantheon.excludePackages);
 
       programs.evince.enable = mkDefault true;
