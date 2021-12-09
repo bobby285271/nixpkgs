@@ -109,9 +109,6 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   mutter = callPackage ./core/mutter { };
 
-  # Needed for elementary's gala and greeter until support for higher versions is provided
-  mutter338 = callPackage ./core/mutter/3.38 { };
-
   # Used by Pantheon to match what elementary OS is using
   mutter41 = callPackage ./core/mutter/41 { };
 
@@ -360,9 +357,7 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   maintainers = lib.teams.gnome.members;
 
-  mutter328 = throw "Removed as Pantheon is upgraded to mutter41.";
-
-  mutter334 = throw "Removed as Pantheon is upgraded to mutter41.";
+  mutter338 = throw "Removed as Pantheon is upgraded to mutter41.";
 
   gnome-settings-daemon338 = throw "Removed as Pantheon is upgraded to gnome-settings-daemon41.";
 
