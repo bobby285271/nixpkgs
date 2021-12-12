@@ -10,15 +10,15 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-gtk-theme";
-  version = "6.1.1";
+  version = "2021-12-12";
 
   repoName = "stylesheet";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = repoName;
-    rev = version;
-    sha256 = "sha256-gciBn5MQ5Cu+dROL5kCt2GCbNA7W4HOWXyjMBd4OP+8=";
+    rev = "9b7122b07b3a1878501d13d842c54e83ef9061c6";
+    sha256 = "sha256-5AJ5Qhx+IP5TvwcmDBh7h5B7Ft6ZJiGAodCQ+S7t2XI=";
   };
 
   nativeBuildInputs = [
