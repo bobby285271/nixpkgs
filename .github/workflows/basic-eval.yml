@@ -5,10 +5,12 @@ on:
     branches:
      - master
      - release-**
+     - pantheon-next
   push:
     branches:
      - master
      - release-**
+     - pantheon-next
 jobs:
   tests:
     runs-on: ubuntu-latest
