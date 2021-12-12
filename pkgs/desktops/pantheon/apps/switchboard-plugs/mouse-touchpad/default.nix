@@ -61,6 +61,10 @@ stdenv.mkDerivation rec {
     })
   ];
 
+  mesonFlags = [
+    "-Dgnome_40=true"
+  ];
+
   meta = with lib; {
     description = "Switchboard Mouse & Touchpad Plug";
     homepage = "https://github.com/elementary/switchboard-plug-mouse-touchpad";
