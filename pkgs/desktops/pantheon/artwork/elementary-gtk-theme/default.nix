@@ -10,13 +10,13 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-gtk-theme";
-  version = "6.1.1";
+  version = "2022-01-19";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = "stylesheet";
-    rev = version;
-    sha256 = "sha256-gciBn5MQ5Cu+dROL5kCt2GCbNA7W4HOWXyjMBd4OP+8=";
+    rev = "329ce1932c7a8d147baed17f691251bb785794f1";
+    sha256 = "sha256-HBniuE0LmBWTK0uAWvZFpPlECpEZtE4b3CzVwHnXfbU=";
   };
 
   nativeBuildInputs = [
@@ -35,7 +35,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "GTK theme designed to be smooth, attractive, fast, and usable";
     homepage = "https://github.com/elementary/stylesheet";
-    license = licenses.gpl3;
+    license = licenses.gpl3Plus;
     platforms = platforms.linux;
     maintainers = teams.pantheon.members;
   };
