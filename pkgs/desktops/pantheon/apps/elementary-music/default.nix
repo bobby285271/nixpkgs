@@ -1,15 +1,14 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, fetchpatch
 , nix-update-script
 , pkg-config
 , meson
 , ninja
 , vala
 , desktop-file-utils
-, gtk3
-, granite
+, gtk4
+, granite7
 , python3
 , libgee
 , clutter-gtk
@@ -27,34 +26,20 @@
 , libsignon-glib
 , libaccounts-glib
 , elementary-icon-theme
-, wrapGAppsHook
+, wrapGAppsHook4
+, libadwaita
 }:
 
 stdenv.mkDerivation rec {
   pname = "elementary-music";
-  version = "5.1.1";
+  version = "2022-01-20";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = "music";
-    rev = version;
-    sha256 = "1wqsn4ss9acg0scaqpg514ll2dj3bl71wly4mm79qkinhy30yv9n";
+    rev = "58d6a7e2bb4a5e1216e6665141cc701933ec6077";
+    sha256 = "sha256-poCdKrVD0VyZFJ9eeRAz4Y5RTVVwUpLgZDFVcUL/QT0=";
   };
-
-  patches = [
-    # Upstream code not respecting our localedir
-    # https://github.com/elementary/music/pull/648
-    (fetchpatch {
-      url = "https://github.com/elementary/music/commit/aea97103d59afd213467403a48788e476e47c4c3.patch";
-      sha256 = "1ayj8l6lb19hhl9bhsdfbq7jgchfmpjx0qkljnld90czcksn95yx";
-    })
-    # Fix build with meson 0.61
-    # https://github.com/elementary/music/pull/674
-    (fetchpatch {
-      url = "https://github.com/elementary/music/commit/fb3d840049c1e2e0bf8fdddea378a2db647dd096.patch";
-      sha256 = "sha256-tQZv7hZExLqbkGXahZxDfg7bkgwCKYbDholC2zuwlNw=";
-    })
-  ];
 
   nativeBuildInputs = [
     desktop-file-utils
@@ -63,20 +48,21 @@ stdenv.mkDerivation rec {
     pkg-config
     python3
     vala
-    wrapGAppsHook
+    wrapGAppsHook4
   ];
 
   buildInputs = with gst_all_1; [
     clutter-gtk
     elementary-icon-theme
-    granite
+    granite7
     gst-plugins-bad
     gst-plugins-base
     gst-plugins-good
     gst-plugins-ugly
     gstreamer
-    gtk3
+    gtk4
     json-glib
+    libadwaita
     libaccounts-glib
     libdbusmenu
     libgda
@@ -89,10 +75,6 @@ stdenv.mkDerivation rec {
     libsoup
     taglib
     zeitgeist
-  ];
-
-  mesonFlags = [
-    "-Dplugins=audioplayer,cdrom,ipod"
   ];
 
   postPatch = ''
