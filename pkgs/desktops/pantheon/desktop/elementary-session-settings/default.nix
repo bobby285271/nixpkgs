@@ -13,6 +13,7 @@
 , elementary-default-settings
 , gnome-settings-daemon
 , runtimeShell
+, systemd
 , writeText
 , meson
 , ninja
@@ -111,6 +112,7 @@ stdenv.mkDerivation rec {
     gnome-settings-daemon
     onboard
     orca
+    systemd
   ];
 
   mesonFlags = [

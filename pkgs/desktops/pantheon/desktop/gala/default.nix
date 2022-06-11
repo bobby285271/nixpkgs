@@ -21,6 +21,7 @@
 , gnome-settings-daemon
 , wrapGAppsHook
 , gexiv2
+, systemd
 }:
 
 stdenv.mkDerivation rec {
@@ -63,12 +64,11 @@ stdenv.mkDerivation rec {
     libgee
     mesa # for libEGL
     mutter
+    systemd
   ];
 
   mesonFlags = [
-    # TODO: enable this and remove --builtin flag from session-settings
-    # https://github.com/NixOS/nixpkgs/pull/140429
-    "-Dsystemd=false"
+    "-Dsystemduserunitdir=${placeholder "out"}/lib/systemd/user"
   ];
 
   postPatch = ''
