@@ -56,7 +56,7 @@ in
         pkgs.gtk3.out
         pkgs.shared-mime-info
         pkgs.xdg-user-dirs # Update user dirs as described in https://freedesktop.org/wiki/Software/xdg-user-dirs/
-        pkgs.yelp # for 'Contents' in 'Help' menus
+        # pkgs.yelp # for 'Contents' in 'Help' menus
       ])
       config.environment.mate.excludePackages;
 
@@ -71,7 +71,7 @@ in
     services.gnome.at-spi2-core.enable = true;
     services.gnome.gnome-keyring.enable = true;
     services.udev.packages = [ pkgs.mate.mate-settings-daemon ];
-    services.gvfs.enable = true;
+    # services.gvfs.enable = true;
     services.upower.enable = config.powerManagement.enable;
     services.xserver.libinput.enable = mkDefault true;
 

@@ -74,26 +74,26 @@ let
     ];
 
     extraPackages = [
-      atril
-      caja-extensions
-      engrampa
-      eom
+      # atril
+      # caja-extensions
+      # engrampa
+      # eom
       mate-applets
-      mate-backgrounds
-      mate-calc
-      mate-indicator-applet
+      # mate-backgrounds
+      # mate-calc
+      # mate-indicator-applet
       mate-media
-      mate-netbook
-      mate-power-manager
-      mate-screensaver
-      mate-sensors-applet
-      mate-system-monitor
+      # mate-netbook
+      # mate-power-manager
+      # mate-screensaver
+      # mate-sensors-applet
+      # mate-system-monitor
       mate-terminal
-      mate-user-guide
+      # mate-user-guide
       # mate-user-share
-      mate-utils
-      mozo
-      pluma
+      # mate-utils
+      # mozo
+      # pluma
     ];
 
   };
