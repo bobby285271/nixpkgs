@@ -64,6 +64,13 @@ stdenv.mkDerivation rec {
     djvulibre
   ];
 
+  preFixup = ''
+    # Used for some non-fd.o icons (e.g. xapp-annotations-text-symbolic)
+    gappsWrapperArgs+=(
+      --prefix XDG_DATA_DIRS : "${xapp}/share"
+    )
+  '';
+
   meta = with lib; {
     description = "A document viewer capable of displaying multiple and single page
 document formats like PDF and Postscript";
