@@ -65,6 +65,13 @@ stdenv.mkDerivation rec {
     clutter
   ];
 
+  preFixup = ''
+    # Used for some non-fd.o icons (e.g. xapp-diaporama-symbolic)
+    gappsWrapperArgs+=(
+      --prefix XDG_DATA_DIRS : "${xapp}/share"
+    )
+  '';
+
   meta = with lib; {
     description = "A generic image viewer from Linux Mint";
     homepage = "https://github.com/linuxmint/pix";
