@@ -48,6 +48,13 @@ stdenv.mkDerivation rec {
     xapp
   ];
 
+  preFixup = ''
+    # Used for some non-fd.o icons (e.g. xapp-use-regex-symbolic)
+    gappsWrapperArgs+=(
+      --prefix XDG_DATA_DIRS : "${xapp}/share"
+    )
+  '';
+
   doInstallCheck = true;
   installCheckPhase = ''
     if [[ "$($out/bin/xed --version)" == "xed - Version ${version}" ]] ; then
