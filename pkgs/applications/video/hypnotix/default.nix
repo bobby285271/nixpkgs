@@ -74,9 +74,13 @@ stdenv.mkDerivation rec {
 
   preFixup = ''
     buildPythonPath "$out $pythonPath"
+
+    # We add xapp to XDG_DATA_DIRS because it is used
+    # for some non-fd.o icons (e.g. xapp-edit-symbolic)
     makeWrapper ${python3.interpreter} $out/bin/hypnotix \
       --add-flags $out/lib/hypnotix/hypnotix.py \
       --prefix PYTHONPATH : "$program_PYTHONPATH" \
+      --prefix XDG_DATA_DIRS : "${xapp}/share" \
       ''${gappsWrapperArgs[@]}
   '';
 
