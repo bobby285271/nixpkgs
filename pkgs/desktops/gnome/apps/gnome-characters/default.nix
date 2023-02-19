@@ -23,11 +23,11 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-characters";
-  version = "43.1";
+  version = "44.beta";
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-characters/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "sj4V2VCXizY8gaRyYe4aO0fbPGaX7haf8hPuplcqeEE=";
+    sha256 = "cUlibILXNw+nfUlHrNlAczguTn6lU6JIJXgZGJimFB8=";
   };
 
   patches = [
