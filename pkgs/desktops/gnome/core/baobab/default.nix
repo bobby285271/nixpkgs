@@ -19,11 +19,11 @@
 
 stdenv.mkDerivation rec {
   pname = "baobab";
-  version = "43.0";
+  version = "44.beta";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "UsaGQRj1aX9aVzaILc2ifbIuciC8SSg43uzGmSRs2yY=";
+    sha256 = "p12ey7F5DTPoOsEhM00eORMoeySjZOh32QQYQKkHrpE=";
   };
 
   nativeBuildInputs = [
