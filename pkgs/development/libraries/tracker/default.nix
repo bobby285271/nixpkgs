@@ -9,13 +9,12 @@
 , gobject-introspection
 , vala
 , python3
-, docbook-xsl-nons
-, docbook_xml_dtd_45
+, gi-docgen
+, graphviz
 , libxml2
 , glib
 , wrapGAppsNoGuiHook
 , sqlite
-, libxslt
 , libstemmer
 , gnome
 , icu
@@ -30,18 +29,14 @@
 
 stdenv.mkDerivation rec {
   pname = "tracker";
-  version = "3.5.0.beta";
+  version = "3.5.0.rc";
 
   outputs = [ "out" "dev" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "gMNtrSS6a0ATwKNy/mz7GrzprzLM5Xs1yV+lPq2LbY8=";
+    sha256 = "AgM6XOsTmc9H0CQugj9zNePC7qG+v1fpW7GslvrD7yM=";
   };
-
-  postPatch = ''
-    patchShebangs utils/data-generators/cc/generate
-  '';
 
   depsBuildBuild = [
     pkg-config
@@ -53,12 +48,11 @@ stdenv.mkDerivation rec {
     pkg-config
     asciidoc
     gettext
-    libxslt
     wrapGAppsNoGuiHook
     gobject-introspection
     vala
-    docbook-xsl-nons
-    docbook_xml_dtd_45
+    gi-docgen
+    graphviz
     (python3.pythonForBuild.withPackages (p: [ p.pygobject3 ]))
   ];
 
@@ -96,6 +90,16 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  postPatch = ''
+    chmod +x \
+      docs/reference/libtracker-sparql/embed-files.py \
+      docs/reference/libtracker-sparql/generate-svgs.sh
+    patchShebangs \
+      utils/data-generators/cc/generate \
+      docs/reference/libtracker-sparql/embed-files.py \
+      docs/reference/libtracker-sparql/generate-svgs.sh
+  '';
+
   preCheck =
     let
       linuxDot0 = lib.optionalString stdenv.isLinux ".0";
@@ -129,6 +133,11 @@ stdenv.mkDerivation rec {
   postCheck = ''
     # Clean up out symlinks
     rm -r $out/lib
+  '';
+
+  postFixup = ''
+    # Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.
+    moveToOutput "share/doc" "$devdoc"
   '';
 
   passthru = {
