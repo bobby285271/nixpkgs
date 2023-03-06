@@ -115,6 +115,27 @@ stdenv.mkDerivation (finalAttrs: {
     # Disable flaky test.
     # https://gitlab.gnome.org/GNOME/glib/-/issues/820
     ./skip-timer-test.patch
+
+    # Fix copying files on btrfs.
+    # https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3309
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/406143b072ec92c2810f93441f037793215b04d9.patch";
+      hash = "sha256-s2OZZWNgf+gp9TwhLR2nOL9OgV9jUyBrJN8FR8zcE1I=";
+    })
+
+    # Fix GJS tests.
+    # https://gitlab.gnome.org/GNOME/glib/-/issues/2932
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/4e62e55d6d0109012869a589eae2371e836e9cb3.patch";
+      hash = "sha256-BadhneyDTINPMkNZ+Z/sqUtuHXipHE5gbXLki7dFmmA=";
+    })
+
+    # Fix g_file_info_get_is_backup.
+    # https://gitlab.gnome.org/GNOME/glib/-/merge_requests/3311
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/glib/-/commit/448a163bee9906ba3937ea8cdb4a08afeb6f9dc3.patch";
+      hash = "sha256-YXMcmY4RnV9wUkM6Lrcu8o71ir+k2p385rb52wogHQc=";
+    })
   ];
 
   outputs = [ "bin" "out" "dev" "devdoc" ];
