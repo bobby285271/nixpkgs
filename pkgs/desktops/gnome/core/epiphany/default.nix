@@ -12,7 +12,6 @@
 , gnome
 , libportal-gtk4
 , libxml2
-, libxslt
 , itstool
 , webkitgtk_6_0
 , libsoup_3
@@ -48,7 +47,6 @@ stdenv.mkDerivation rec {
     desktop-file-utils
     gettext
     itstool
-    libxslt
     meson
     ninja
     pkg-config
