@@ -14,7 +14,6 @@
 , gtk3
 , itstool
 , libgweather
-, libsoup
 , libwnck
 , libxml2
 , pkg-config
@@ -77,7 +76,6 @@ stdenv.mkDerivation rec {
     gnome-menus
     gtk3
     libgweather
-    libsoup
     libwnck
     polkit
     systemd
