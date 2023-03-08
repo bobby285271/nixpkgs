@@ -116,6 +116,7 @@ stdenv.mkDerivation rec {
     # to be safe due to the general state of the project
     "-Dminer_rss=false"
   ] ++ lib.optionals (!stdenv.isLinux) [
+    "-Dbattery_detection=none"
     "-Dnetwork_manager=disabled"
     "-Dsystemd_user_services=false"
   ];
