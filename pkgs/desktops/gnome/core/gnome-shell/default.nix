@@ -36,7 +36,7 @@
 , gdm
 , upower
 , ibus
-, libnma
+, libnma4
 , libgnomekbd
 , gnome-desktop
 , gsettings-desktop-schemas
@@ -164,7 +164,7 @@ stdenv.mkDerivation rec {
 
     # not declared at build time, but typelib is needed at runtime
     libgweather
-    libnma
+    libnma4
 
     # for gnome-extension tool
     bash-completion
