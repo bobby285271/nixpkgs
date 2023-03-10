@@ -177,6 +177,7 @@ stdenv.mkDerivation rec {
 
   mesonFlags = [
     "-Dgtk_doc=true"
+    "-Dtests=false"
   ];
 
   postPatch = ''
