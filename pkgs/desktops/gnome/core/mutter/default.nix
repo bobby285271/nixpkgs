@@ -15,18 +15,28 @@
 , libcanberra
 , ninja
 , xvfb-run
-, xkeyboard_config
-, libxkbfile
 , libICE
+, libX11
+, libXcomposite
+, libXcursor
 , libXdamage
-, libxkbcommon
+, libXext
+, libXfixes
+, libXi
 , libXtst
+, libxkbfile
+, xkeyboard_config
+, libxkbcommon
+, libXrender
+, libxcb
+, libXrandr
+, libXinerama
+, libXau
 , libinput
 , libdrm
 , gsettings-desktop-schemas
 , glib
 , atk
-, gtk3
 , gtk4
 , fribidi
 , harfbuzz
@@ -34,6 +44,7 @@
 , pipewire
 , libgudev
 , libwacom
+, libSM
 , xwayland
 , mesa
 , meson
@@ -65,6 +76,7 @@ stdenv.mkDerivation (finalAttrs: {
   mesonFlags = [
     "-Degl_device=true"
     "-Dinstalled_tests=false" # TODO: enable these
+    "-Dtests=false"
     "-Dwayland_eglstream=true"
     "-Dprofiler=true"
     "-Dxwayland_path=${xwayland}/bin/Xwayland"
@@ -77,7 +89,6 @@ stdenv.mkDerivation (finalAttrs: {
   propagatedBuildInputs = [
     # required for pkg-config to detect mutter-clutter
     json-glib
-    libXtst
     libcap_ng
     graphene
   ];
@@ -105,8 +116,6 @@ stdenv.mkDerivation (finalAttrs: {
     gobject-introspection
     gsettings-desktop-schemas
     atk
-    gtk3
-    gtk4
     fribidi
     harfbuzz
     libcanberra
@@ -115,19 +124,35 @@ stdenv.mkDerivation (finalAttrs: {
     libinput
     libstartup_notification
     libwacom
-    libxkbcommon
-    libxkbfile
-    libICE
-    libXdamage
+    libSM
     colord
     lcms2
     pango
     pipewire
     sysprof # for D-Bus interfaces
     libsysprof-capture
-    xkeyboard_config
     xwayland
     wayland-protocols
+  ] ++ [
+    # X11 client
+    gtk4
+    libICE
+    libX11
+    libXcomposite
+    libXcursor
+    libXdamage
+    libXext
+    libXfixes
+    libXi
+    libXtst
+    libxkbfile
+    xkeyboard_config
+    libxkbcommon
+    libXrender
+    libxcb
+    libXrandr
+    libXinerama
+    libXau
   ];
 
   postPatch = ''
