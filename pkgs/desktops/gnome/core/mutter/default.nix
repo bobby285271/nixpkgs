@@ -29,6 +29,7 @@
 , gtk3
 , gtk4
 , fribidi
+, harfbuzz
 , gnome-desktop
 , pipewire
 , libgudev
@@ -107,6 +108,7 @@ stdenv.mkDerivation (finalAttrs: {
     gtk3
     gtk4
     fribidi
+    harfbuzz
     libcanberra
     libdrm
     libgudev
