@@ -77,6 +77,7 @@ stdenv.mkDerivation rec {
     patchShebangs \
       data/icons/meson_updateiconcache.py \
       data/meson_desktopfile.py \
+      data/meson_metainfofile.py \
       src/meson_compileschemas.py
   '';
 
