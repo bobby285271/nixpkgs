@@ -185,6 +185,12 @@ stdenv.mkDerivation rec {
     # We can generate it ourselves.
     rm -f man/gnome-shell.1
     rm data/theme/gnome-shell.css
+
+    # FIXME: Probably an upstream issue, report this to upstream.
+    # element include: XInclude error : could not load xxx, and no fallback was found
+    substituteInPlace docs/reference/shell/shell-docs.sgml \
+      --replace '<xi:include href="xml/shell-embedded-window.xml"/>' ' ' \
+      --replace '<xi:include href="xml/shell-gtk-embed.xml"/>' ' '
   '';
 
   postInstall = ''
