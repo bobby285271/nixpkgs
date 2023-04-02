@@ -66,7 +66,7 @@ stdenv.mkDerivation rec {
     gnome-menus
     gnome.gnome-bluetooth_1_0
     gnome.gnome-settings-daemon
-    gnome.mutter
+    gnome.mutter43
     graphene
     gtk3
     ibus

@@ -58,7 +58,7 @@ let
       budgie-desktop
       budgie-desktop-view
       gsettings-desktop-schemas
-      gnome.mutter
+      gnome.mutter43
   ] ++ extraGSettingsOverridePackages;
 
 in
