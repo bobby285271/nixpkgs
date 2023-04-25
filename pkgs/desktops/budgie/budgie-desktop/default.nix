@@ -30,7 +30,7 @@
 , polkit
 , sassc
 , upower
-, vala
+, vala_0_56_4
 , wrapGAppsHook
 }:
 
@@ -61,7 +61,7 @@ stdenv.mkDerivation rec {
     meson
     ninja
     pkg-config
-    vala
+    vala_0_56_4
     wrapGAppsHook
   ];
 
