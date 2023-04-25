@@ -46,6 +46,10 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-ww65J9plixbxFza6xCfaz1WYtT9giKkLVH1XYxH41+0=";
   };
 
+  separateDebugInfo = true;
+
+  VALAFLAGS = "-g";
+
   patches = [
     ./plugins.patch
   ];
