@@ -1,6 +1,7 @@
 { lib, pkgs }:
 
 lib.makeScope pkgs.newScope (self: with self; {
+  vala = pkgs.vala_0_56_7;
   budgie-backgrounds = callPackage ./budgie-backgrounds { };
   budgie-control-center = callPackage ./budgie-control-center { };
   budgie-desktop = callPackage ./budgie-desktop { };
