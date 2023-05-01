@@ -111,6 +111,12 @@ stdenv.mkDerivation rec {
       utils/data-generators/cc/generate \
       docs/reference/libtracker-sparql/embed-files.py \
       docs/reference/libtracker-sparql/generate-svgs.sh
+
+    substituteInPlace tests/functional-tests/meson.build \
+      --replace "fts-integrity" "sql-statements"
+    
+    substituteInPlace tests/meson.build \
+      --replace "fts-integrity" "sql-statements"
   '';
 
   preCheck =
