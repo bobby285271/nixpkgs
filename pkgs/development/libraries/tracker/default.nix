@@ -101,11 +101,7 @@ stdenv.mkDerivation rec {
     "-Dsystemd_user_services=false"
   ];
 
-  doCheck =
-    # https://gitlab.gnome.org/GNOME/tracker/-/issues/402
-    !(stdenv.isDarwin && stdenv.isx86_64)
-    # https://gitlab.gnome.org/GNOME/tracker/-/issues/398
-    && !stdenv.is32bit;
+  doCheck = true;
 
   postPatch = ''
     chmod +x \
@@ -138,6 +134,7 @@ stdenv.mkDerivation rec {
   checkPhase = ''
     runHook preCheck
 
+    export TRACKER_DEBUG=sql-statements
     dbus-run-session \
       --config-file=${dbus}/share/dbus-1/session.conf \
       meson test \
