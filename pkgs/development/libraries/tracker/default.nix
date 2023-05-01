@@ -2,7 +2,7 @@
 , lib
 , fetchurl
 , gettext
-, meson
+, meson_1
 , ninja
 , pkg-config
 , asciidoc
@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    meson
+    meson_1
     ninja
     pkg-config
     asciidoc
