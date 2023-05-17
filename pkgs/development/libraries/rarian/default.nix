@@ -1,19 +1,33 @@
-{lib, stdenv, fetchurl, pkg-config, perlPackages, libxml2, libxslt, docbook_xml_dtd_42, gnome}:
-let
-  pname = "rarian";
-  version = "0.8.1";
-in stdenv.mkDerivation rec {
-  name = "${pname}-${version}";
+{ stdenv
+, lib
+, fetchFromGitLab
+, autoreconfHook
+, pkg-config
+, libxslt
+, tinyxml
+}:
 
-  src = fetchurl {
-    url = "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${name}.tar.gz";
-    sha256 = "aafe886d46e467eb3414e91fa9e42955bd4b618c3e19c42c773026b205a84577";
+stdenv.mkDerivation rec {
+  pname = "rarian";
+  version = "0.8.4";
+
+  src = fetchFromGitLab {
+    domain = "gitlab.freedesktop.org";
+    owner = "rarian";
+    repo = "rarian";
+    rev = version;
+    hash = "sha256-IVbK5cusSdvBPrEuYafrst13FLBlxm3g1fKYGBDy0bM=";
   };
 
-  nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ libxml2 libxslt ]
-    ++ (with perlPackages; [ perl XMLParser ]);
-  configureFlags = [ "--with-xml-catalog=${docbook_xml_dtd_42}/xml/dtd/docbook/docbook.cat" ];
+  nativeBuildInputs = [
+    autoreconfHook
+    pkg-config
+  ];
+
+  buildInputs = [
+    libxslt
+    tinyxml
+  ];
 
   meta = with lib; {
     description = "Documentation metadata library based on the proposed Freedesktop.org spec";
