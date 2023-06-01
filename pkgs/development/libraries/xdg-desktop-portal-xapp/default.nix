@@ -4,7 +4,6 @@
 , meson
 , ninja
 , pkg-config
-, python3
 , wrapGAppsHook
 , cinnamon
 , glib
@@ -16,40 +15,34 @@
 
 stdenv.mkDerivation rec {
   pname = "xdg-desktop-portal-xapp";
-  version = "1.0.0";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "xdg-desktop-portal-xapp";
     rev = version;
-    hash = "sha256-oXV4u/w4MWhKHf5vNbUNcyEJpKVFWcyEs1HEqo6eCyU=";
+    hash = "sha256-N0LVgk3VT0Fax1GTB7jzFhwzNEeAuyFHAuxXNCo2o3Y=";
   };
 
   nativeBuildInputs = [
     meson
     ninja
     pkg-config
-    python3
     wrapGAppsHook
   ];
 
   buildInputs = [
-    cinnamon.cinnamon-desktop # org.cinnamon.desktop.background
+    cinnamon.cinnamon-desktop # for org.cinnamon.desktop.background schema
     glib
-    gsettings-desktop-schemas # org.gnome.system.location
+    gsettings-desktop-schemas # for org.gnome.system.location schema
     gtk3
-    mate.mate-desktop # org.mate.background
+    mate.mate-desktop # for org.mate.background schema
     xdg-desktop-portal
   ];
 
   mesonFlags = [
     "-Dsystemduserunitdir=${placeholder "out"}/lib/systemd/user"
   ];
-
-  postPatch = ''
-    chmod +x data/meson_install_schemas.py
-    patchShebangs data/meson_install_schemas.py
-  '';
 
   meta = with lib; {
     description = "Backend implementation for xdg-desktop-portal for Cinnamon, MATE, Xfce";
