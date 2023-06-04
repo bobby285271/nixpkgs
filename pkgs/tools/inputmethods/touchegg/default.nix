@@ -65,6 +65,12 @@ stdenv.mkDerivation rec {
     libxcb
   ]);
 
+  postPatch = ''
+    # Disable autostart in cinnamon, cinnamon itself acts as the client.
+    # https://github.com/linuxmint/cinnamon/pull/11674
+    echo "NotShowIn=X-Cinnamon" >> installation/touchegg.desktop
+  '';
+
   PKG_CONFIG_SYSTEMD_SYSTEMDSYSTEMUNITDIR = "${placeholder "out"}/lib/systemd/system";
 
   passthru = {
