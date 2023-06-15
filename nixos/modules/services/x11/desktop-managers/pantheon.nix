@@ -212,6 +212,7 @@ in
         gnome.adwaita-icon-theme
         gtk3.out # for gtk-launch program
         onboard
+        plank # TODO: drop
         qgnomeplatform
         sound-theme-freedesktop
         xdg-user-dirs # Update user dirs as described in http://freedesktop.org/wiki/Software/xdg-user-dirs/
