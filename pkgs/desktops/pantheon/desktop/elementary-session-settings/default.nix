@@ -91,13 +91,13 @@ in
 
 stdenv.mkDerivation rec {
   pname = "elementary-session-settings";
-  version = "6.0.0";
+  version = "unstable-2023-06-15";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = "session-settings";
-    rev = version;
-    sha256 = "1faglpa7q3a4335gnd074a3lnsdspyjdnskgy4bfnf6xmwjx7kjx";
+    rev = "cb1176bca8ac84c08f6c2cc62654516c5447a6bb";
+    sha256 = "sha256-VEudr+WNe/ycBGdRMwIVLl/2R2KjZqyibuuMoEzUuKM=";
   };
 
   nativeBuildInputs = [
