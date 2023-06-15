@@ -14,7 +14,7 @@
 , gtk3
 , gnome-menus
 , json-glib
-, elementary-dock
+, plank
 , bamf
 , switchboard-with-plugs
 , libsoup
@@ -53,7 +53,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     bamf
-    elementary-dock
+    plank
     granite
     gtk3
     json-glib

@@ -16,7 +16,7 @@
 , granite
 , libnotify
 , pango
-, elementary-dock
+, plank
 , bamf
 , sqlite
 , zeitgeist
@@ -51,7 +51,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     bamf
-    elementary-dock
+    plank
     glib
     granite
     gtk3

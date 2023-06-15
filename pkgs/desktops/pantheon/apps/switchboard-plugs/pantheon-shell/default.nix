@@ -17,7 +17,7 @@
 , gnome-desktop
 , gala
 , wingpanel
-, elementary-dock
+, plank
 , switchboard
 , gettext
 , bamf
@@ -44,7 +44,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     bamf
-    elementary-dock
+    plank
     elementary-settings-daemon
     gnome-settings-daemon
     gala
