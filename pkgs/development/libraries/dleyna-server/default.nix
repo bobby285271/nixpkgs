@@ -2,7 +2,7 @@
 , lib
 , fetchFromGitHub
 , fetchpatch
-, meson
+, meson_1_2
 , ninja
 , makeWrapper
 , pkg-config
@@ -38,7 +38,7 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    meson
+    meson_1_2
     ninja
     pkg-config
     makeWrapper

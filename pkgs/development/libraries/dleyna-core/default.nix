@@ -1,7 +1,7 @@
 { stdenv
 , lib
 , fetchFromGitHub
-, meson
+, meson_1_2
 , ninja
 , pkg-config
 , gupnp
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    meson
+    meson_1_2
     ninja
     pkg-config
   ];
