@@ -28,7 +28,7 @@
 , libpulseaudio
 , libical
 , gobject-introspection
-, wrapGAppsHook
+, wrapGAppsHook4
 , libxslt
 , gcr_4
 , accountsservice
@@ -45,7 +45,6 @@
 , gjs
 , mutter
 , evolution-data-server-gtk4
-, gtk3
 , gtk4
 , libadwaita
 , sassc
@@ -67,13 +66,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "gnome-shell";
-  version = "44.3";
+  version = "45.alpha";
 
   outputs = [ "out" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "VWlLccLuTq72DZNCgAPy6qTPABhoSPXja0XP5Qb8Mb8=";
+    sha256 = "fBXgRyi3oykhH/SJODTbPJlX8PIGHkAoyFCYYR6x97I=";
   };
 
   patches = [
@@ -115,7 +114,7 @@ stdenv.mkDerivation rec {
     docbook_xml_dtd_45
     gtk-doc
     perl
-    wrapGAppsHook
+    wrapGAppsHook4
     sassc
     desktop-file-utils
     libxslt.bin
@@ -140,7 +139,6 @@ stdenv.mkDerivation rec {
     libpulseaudio
     evolution-data-server-gtk4
     libical
-    gtk3
     gtk4
     libadwaita
     gdm
