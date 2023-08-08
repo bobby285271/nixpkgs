@@ -2,6 +2,7 @@
 , lib
 , fetchurl
 , substituteAll
+, dconf
 , gettext
 , meson
 , ninja
@@ -32,7 +33,7 @@
 , libadwaita
 , libnma-gtk4
 , tzdata
-, libgnomekbd
+, gnome-tecla
 , gsettings-desktop-schemas
 }:
 
@@ -48,11 +49,13 @@ stdenv.mkDerivation rec {
   patches = [
     (substituteAll {
       src = ./0001-fix-paths.patch;
-      inherit tzdata libgnomekbd;
+      inherit tzdata;
+      tecla = gnome-tecla;
     })
   ];
 
   nativeBuildInputs = [
+    dconf
     gettext
     meson
     ninja
