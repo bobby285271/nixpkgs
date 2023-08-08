@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchurl
+, desktop-file-utils
 , pkg-config
 , gnome
 , gtk4
@@ -26,6 +27,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
+    desktop-file-utils
     pkg-config
     meson
     ninja
