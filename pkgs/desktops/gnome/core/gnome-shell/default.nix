@@ -45,6 +45,7 @@
 , gjs
 , mutter
 , evolution-data-server-gtk4
+, gtk3
 , gtk4
 , libadwaita
 , sassc
@@ -139,6 +140,7 @@ stdenv.mkDerivation rec {
     libpulseaudio
     evolution-data-server-gtk4
     libical
+    gtk3
     gtk4
     libadwaita
     gdm
@@ -183,7 +185,7 @@ stdenv.mkDerivation rec {
 
     # We can generate it ourselves.
     rm -f man/gnome-shell.1
-    rm data/theme/gnome-shell.css
+    rm data/theme/gnome-shell-{light,dark}.css
   '';
 
   postInstall = ''
@@ -208,6 +210,7 @@ stdenv.mkDerivation rec {
   postFixup = ''
     # The services need typelibs.
     for svc in org.gnome.ScreenSaver org.gnome.Shell.Extensions org.gnome.Shell.Notifications org.gnome.Shell.Screencast; do
+      chmod +x $out/share/gnome-shell/$svc
       wrapGApp $out/share/gnome-shell/$svc
     done
   '';
