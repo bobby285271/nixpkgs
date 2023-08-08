@@ -476,7 +476,7 @@ in
             baobab
             cheese
             eog
-            epiphany
+            # epiphany
             pkgs.gnome-text-editor
             gnome-calculator
             gnome-calendar
