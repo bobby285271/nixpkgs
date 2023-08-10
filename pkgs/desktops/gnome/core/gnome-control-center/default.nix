@@ -20,12 +20,12 @@
 , gnome-desktop
 , gnome-online-accounts
 , gnome-settings-daemon
+, gnome-tecla
 , gnome
 , gsettings-desktop-schemas
 , gsound
 , gtk4
 , ibus
-, libgnomekbd
 , libgtop
 , libgudev
 , libadwaita
@@ -76,7 +76,8 @@ stdenv.mkDerivation rec {
     (substituteAll {
       src = ./paths.patch;
       gcm = gnome-color-manager;
-      inherit glibc libgnomekbd tzdata shadow;
+      tecla = gnome-tecla;
+      inherit glibc tzdata shadow;
       inherit cups networkmanagerapplet;
     })
   ];
