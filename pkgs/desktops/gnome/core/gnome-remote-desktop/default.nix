@@ -21,10 +21,6 @@
 , fdk_aac
 , tpm2-tss
 , fuse3
-, mesa
-, libgudev
-, xvfb-run
-, dbus
 , gnome
 }:
 
@@ -62,32 +58,12 @@ stdenv.mkDerivation rec {
     libxkbcommon
     pipewire
     systemd
-  ] ++ nativeCheckInputs;
-
-  nativeCheckInputs = [
-    mesa # for gbm
-    libgudev
-    xvfb-run
-    python3.pkgs.dbus-python
-    python3.pkgs.pygobject3
-    dbus # for dbus-run-session
   ];
 
   mesonFlags = [
     "-Dsystemd_user_unit_dir=${placeholder "out"}/lib/systemd/user"
+    "-Dtests=false" # Too deep of a rabbit hole.
   ];
-
-  # Too deep of a rabbit hole.
-  doCheck = false;
-
-  postPatch = ''
-    patchShebangs \
-      tests/vnc-test-runner.sh \
-      tests/run-vnc-tests.py
-
-    substituteInPlace tests/vnc-test-runner.sh \
-      --replace "dbus-run-session" "dbus-run-session --config-file=${dbus}/share/dbus-1/session.conf"
-  '';
 
   passthru = {
     updateScript = gnome.updateScript {
