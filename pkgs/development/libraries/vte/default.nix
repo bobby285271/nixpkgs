@@ -20,6 +20,7 @@
 , gperf
 , pango
 , pcre2
+, cairo
 , fribidi
 , zlib
 , icu
@@ -64,6 +65,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    cairo
     fribidi
     gnutls
     pcre2
@@ -82,11 +84,10 @@ stdenv.mkDerivation rec {
 
   mesonFlags = [
     "-Ddocs=true"
+    (lib.mesonBool "gtk3" (gtkVersion == "3"))
+    (lib.mesonBool "gtk4" (gtkVersion == "4"))
   ] ++ lib.optionals (!systemdSupport) [
     "-D_systemd=false"
-  ] ++ lib.optionals (gtkVersion == "4") [
-    "-Dgtk3=false"
-    "-Dgtk4=true"
   ] ++ lib.optionals stdenv.isDarwin [
     # -Bsymbolic-functions is not supported on darwin
     "-D_b_symbolic_functions=false"
