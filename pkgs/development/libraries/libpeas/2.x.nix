@@ -72,6 +72,7 @@ stdenv.mkDerivation rec {
 
   passthru = {
     updateScript = gnome.updateScript {
+      attrPath = "libpeas2";
       packageName = "libpeas";
       versionPolicy = "odd-unstable";
     };
