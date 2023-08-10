@@ -45,6 +45,7 @@ stdenv.mkDerivation rec {
 
   passthru = {
     updateScript = gnome.updateScript {
+      attrPath = "gnome-tecla";
       packageName = "tecla";
     };
   };
