@@ -66,12 +66,6 @@ stdenv.mkDerivation (finalAttrs: {
     pkg-config
     wrapGAppsHook
     xmlto
-
-    # For tests, but checked during configuring
-    python3.pkgs.pytest
-    python3.pkgs.python-dbusmock
-    python3.pkgs.pygobject3
-    python3.pkgs.dbus-python
   ];
 
   buildInputs = [
@@ -97,6 +91,13 @@ stdenv.mkDerivation (finalAttrs: {
     ]))
   ] ++ lib.optionals enableGeoLocation [
     geoclue2
+  ];
+
+  nativeCheckInputs = [
+    python3.pkgs.pytest
+    python3.pkgs.python-dbusmock
+    python3.pkgs.pygobject3
+    python3.pkgs.dbus-python
   ];
 
   mesonFlags = [
