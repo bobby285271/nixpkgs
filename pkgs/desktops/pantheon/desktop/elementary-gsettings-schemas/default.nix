@@ -4,7 +4,7 @@
 , elementary-default-settings
 , glib
 , gala
-, epiphany
+# , epiphany
 , gnome-settings-daemon
 , gtk3
 , elementary-dock
@@ -20,7 +20,7 @@ let
   gsettingsOverridePackages = [
     elementary-dock
     gnome-settings-daemon
-    epiphany
+    # epiphany
     gala
     gsettings-desktop-schemas
     gtk3

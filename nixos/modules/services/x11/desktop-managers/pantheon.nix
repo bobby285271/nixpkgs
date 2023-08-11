@@ -298,7 +298,7 @@ in
         elementary-tasks
         elementary-terminal
         elementary-videos
-        epiphany
+        # epiphany
       ] ++ lib.optionals config.services.flatpak.enable [
         # Only install appcenter if flatpak is enabled before
         # https://github.com/NixOS/nixpkgs/issues/15932 is resolved.
