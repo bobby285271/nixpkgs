@@ -56,6 +56,7 @@ stdenv.mkDerivation rec {
   ];
 
   # Direct usage in `loaders/gjs/peas-plugin-loader-gjs.cpp`.
+  # https://gitlab.gnome.org/GNOME/libpeas/-/issues/51
   env.NIX_CFLAGS_COMPILE = "-I${spidermonkey_102.dev}/include/mozjs-102";
 
   postPatch = ''
