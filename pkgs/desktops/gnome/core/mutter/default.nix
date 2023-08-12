@@ -35,6 +35,7 @@
 , libXau
 , libinput
 , libdrm
+, libei
 , gsettings-desktop-schemas
 , glib
 , atk
@@ -123,6 +124,7 @@ stdenv.mkDerivation (finalAttrs: {
     harfbuzz
     libcanberra
     libdrm
+    libei
     libgudev
     libinput
     libstartup_notification
