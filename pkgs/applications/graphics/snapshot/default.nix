@@ -46,6 +46,13 @@ stdenv.mkDerivation rec {
     pipewire # for device provider
   ];
 
+  preFixup = ''
+    gappsWrapperArgs+=(
+      # vp8enc preset
+      --prefix GST_PRESET_PATH : "${gst_all_1.gst-plugins-good}/share/gstreamer-1.0/presets"
+    )
+  '';
+
   passthru.updateScript = gnome.updateScript {
     packageName = "snapshot";
   };
