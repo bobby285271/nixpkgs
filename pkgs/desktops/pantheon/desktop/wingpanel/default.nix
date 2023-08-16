@@ -22,13 +22,14 @@
 
 stdenv.mkDerivation rec {
   pname = "wingpanel";
-  version = "3.0.3";
+  version = "3.0.3-unstable-2023-04-24";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
-    rev = version;
-    sha256 = "sha256-dShC6SXjOJmiLI6TUEZsthv5scnm9Jzum+sG/NkWAyM=";
+    # Needed for mutter 44 support.
+    rev = "0cbf28917254366b08ef66a032687a2498e157ef";
+    sha256 = "sha256-nxvefiUJw4ouLvbfLYrPNlkNya19k/g2Yaj0uxU2/lI=";
   };
 
   patches = [
