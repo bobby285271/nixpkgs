@@ -42,8 +42,8 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   mutter = pkgs.gnome.mutter44;
 
-  # Using 43 to match Mutter used in Pantheon
-  gnome-settings-daemon = pkgs.gnome.gnome-settings-daemon43;
+  # Using 44 to match Mutter used in Pantheon
+  gnome-settings-daemon = pkgs.gnome.gnome-settings-daemon44;
 
   elementary-gsettings-schemas = callPackage ./desktop/elementary-gsettings-schemas { };
 
