@@ -97,7 +97,7 @@ lib.makeScope pkgs.newScope (self: with self; {
   mutter = callPackage ./core/mutter { };
 
   # Needed for elementary's gala, wingpanel and greeter until support for higher versions is provided
-  mutter43 = callPackage ./core/mutter/43 { };
+  mutter44 = callPackage ./core/mutter/44 { };
 
   nautilus = callPackage ./core/nautilus { };
 
@@ -272,6 +272,7 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   mutter338 = throw "The ‘gnome.mutter338’ package was removed as it is no longer needed by Pantheon."; # added 2023-02-22
   mutter42 = throw "The ‘gnome.mutter42’ package was removed as it is no longer needed by Pantheon."; # added 2023-03-23
+  mutter43 = throw "The ‘gnome.mutter43’ package was removed as it is no longer needed by Pantheon."; # added 2023-08-16
   gnome-settings-daemon338 = throw "The ‘gnome.gnome-settings-daemon338’ package was removed as it is no longer needed by Pantheon."; # added 2023-02-22
   gnome-settings-daemon42 = throw "The ‘gnome.gnome-settings-daemon42’ package was removed as it is no longer needed by Pantheon."; # added 2023-03-23
 }
