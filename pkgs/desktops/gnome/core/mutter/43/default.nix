@@ -67,6 +67,15 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://gitlab.gnome.org/GNOME/mutter/-/commit/285a5a4d54ca83b136b787ce5ebf1d774f9499d5.patch";
       sha256 = "/npUE3idMSTVlFptsDpZmGWjZ/d2gqruVlJKq4eF4xU=";
     })
+
+    # Remove keybinding support for window shading.
+    # The corresponding key was removed in gsettings-desktop-schemas 45.alpha.
+    # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2884
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/mutter/-/commit/b521747d8156777f68d2b7453929c8b978312dac.patch";
+      includes = [ "src/core/keybindings.c" ];
+      sha256 = "HNJzCCGEHwhhhDW8+cFEbZmSDD/bz0xjq/lh2aI/xc4=";
+    })
   ];
 
   mesonFlags = [
