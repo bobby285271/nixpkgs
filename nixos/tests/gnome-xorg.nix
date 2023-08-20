@@ -5,7 +5,7 @@ import ./make-test-python.nix ({ pkgs, lib, ...} : {
   };
 
   nodes.machine = { nodes, ... }: let
-    user = nodes.machine.config.users.users.alice;
+    user = nodes.machine.users.users.alice;
   in
 
     { imports = [ ./common/user-account.nix ];
@@ -43,7 +43,7 @@ import ./make-test-python.nix ({ pkgs, lib, ...} : {
     };
 
   testScript = { nodes, ... }: let
-    user = nodes.machine.config.users.users.alice;
+    user = nodes.machine.users.users.alice;
     uid = toString user.uid;
     bus = "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/${uid}/bus";
     xauthority = "/run/user/${uid}/gdm/Xauthority";
