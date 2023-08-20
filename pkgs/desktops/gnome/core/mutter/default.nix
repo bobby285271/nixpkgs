@@ -1,4 +1,5 @@
 { fetchurl
+, fetchpatch
 , runCommand
 , lib
 , stdenv
@@ -74,6 +75,15 @@ stdenv.mkDerivation (finalAttrs: {
     url = "mirror://gnome/sources/mutter/${lib.versions.major finalAttrs.version}/mutter-${finalAttrs.version}.tar.xz";
     sha256 = "GFy+vyFQ0+RQVQ43G9sTqLTbCWl4sU+ZUh6WbqzHBVE=";
   };
+
+  patches = [
+    # Fix restoring focus when leaving the overview
+    # https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3186
+    (fetchpatch {
+      url = "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3186.diff";
+      sha256 = "dLyCXdAEXFD1TN+dXVnkGDmfDAF6HF7uwasvmQgKJsM=";
+    })
+  ];
 
   mesonFlags = [
     "-Degl_device=true"
