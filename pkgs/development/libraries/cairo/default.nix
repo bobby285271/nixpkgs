@@ -8,6 +8,7 @@
 , pkg-config
 , python3
 , darwin
+, expat
 , fontconfig
 , freetype
 , glib
@@ -21,6 +22,7 @@
 , libXrender
 , xcbSupport ? x11Support
 , libxcb
+, xcbutil
 , libGLSupported ? lib.elem stdenv.hostPlatform.system lib.platforms.mesaPlatforms
 , libGL
 , writeText
@@ -58,6 +60,7 @@ stdenv.mkDerivation (finalAttrs: {
   ]);
 
   propagatedBuildInputs = [
+    expat
     fontconfig
     freetype
     glib
@@ -71,9 +74,8 @@ stdenv.mkDerivation (finalAttrs: {
     libXrender
   ] ++ lib.optionals xcbSupport [
     libxcb
+    xcbutil
   ] ++ lib.optionals libGLSupported [
-    # FIXME: We should figure out what is actually needing this.
-    # https://github.com/NixOS/nixpkgs/pull/247766#issuecomment-1695809990
     libGL
   ];
 
