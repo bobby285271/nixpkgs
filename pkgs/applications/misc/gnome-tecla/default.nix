@@ -22,11 +22,10 @@ stdenv.mkDerivation rec {
     hash = "sha256-dl96ZD5aHaqd7ywMg988ZRrkveBVM9ZO4VWeuzxOjr0=";
   };
 
-  patches = [
-    # ../src/tecla-util.c:29:12: error: 'PATH_MAX' undeclared
-    # https://gitlab.gnome.org/GNOME/tecla/-/issues/8
-    ./fix-path-max.patch
-  ];
+  postPatch = ''
+    # https://gitlab.gnome.org/GNOME/tecla/-/merge_requests/8
+    substituteInPlace src/tecla-util.c --replace "xdg[PATH_MAX]" "xdg[1024]"
+  '';
 
   nativeBuildInputs = [
     meson
@@ -55,7 +54,7 @@ stdenv.mkDerivation rec {
     homepage = "https://gitlab.gnome.org/GNOME/tecla";
     license = licenses.gpl2Plus;
     maintainers = teams.gnome.members;
-    platforms = platforms.linux;
+    platforms = platforms.unix;
     mainProgram = "tecla";
   };
 }
