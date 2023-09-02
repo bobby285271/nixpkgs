@@ -1,6 +1,6 @@
 { stdenv
 , lib
-, fetchurl
+, fetchFromGitLab
 , docbook-xsl-nons
 , gtk-doc
 , meson
@@ -27,12 +27,18 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cairo";
-  version = "1.17.8";
+  version = "1.17.9-unstable-2023-08-23";
 
-  src = fetchurl {
-    url = "https://cairographics.org/${if lib.mod (builtins.fromJSON (lib.versions.minor finalAttrs.version)) 2 == 0 then "releases" else "snapshots"}/${finalAttrs.pname}-${finalAttrs.version}.tar.xz";
-    hash = "sha256-WxDIiS0bWNcNPwultHhjoGEmL6VrnceUQWH4yLeDvGQ=";
+  src = fetchFromGitLab {
+    domain = "gitlab.freedesktop.org";
+    owner = "cairo";
+    repo = "cairo";
+    rev = "7645586223cea9f5313253bd8cde96a0a4007905";
+    hash = "sha256-kJCUQqFV2+MIWet+pa55d+i8gHM3P0Q1laGTd6FRoXs=";
   };
+
+  # https://gitlab.freedesktop.org/cairo/cairo/-/merge_requests/508
+  hardeningDisable = [ "format" ];
 
   outputs = [ "out" "dev" "devdoc" ];
   outputBin = "dev"; # very small
