@@ -27,18 +27,15 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cairo";
-  version = "1.17.9-unstable-2023-08-23";
+  version = "1.17.6";
 
   src = fetchFromGitLab {
     domain = "gitlab.freedesktop.org";
     owner = "cairo";
     repo = "cairo";
-    rev = "7645586223cea9f5313253bd8cde96a0a4007905";
-    hash = "sha256-kJCUQqFV2+MIWet+pa55d+i8gHM3P0Q1laGTd6FRoXs=";
+    rev = finalAttrs.version;
+    hash = "sha256-RIWtQ/n4SjaB2SDVn0CVp5ydmVYA5oyQkCAwrkdF4EE=";
   };
-
-  # https://gitlab.freedesktop.org/cairo/cairo/-/merge_requests/508
-  hardeningDisable = [ "format" ];
 
   outputs = [ "out" "dev" "devdoc" ];
   outputBin = "dev"; # very small
@@ -81,6 +78,7 @@ stdenv.mkDerivation (finalAttrs: {
     "-Dgtk_doc=true"
     "-Dspectre=disabled" # only useful for tests
     "-Dsymbol-lookup=disabled"
+    "-Dtee=enabled" # used by firefox
     "-Dtests=disabled"
     (lib.mesonEnable "xlib" x11Support)
     (lib.mesonEnable "xcb" xcbSupport)
