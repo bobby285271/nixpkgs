@@ -8,6 +8,7 @@
 , extra-cmake-modules
 , cairo
 , pango
+, expat
 , fribidi
 , fmt
 , wayland
@@ -72,6 +73,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    expat
     fmt
     isocodes
     cairo
