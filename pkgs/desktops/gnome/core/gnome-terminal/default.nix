@@ -12,6 +12,7 @@
 , glib
 , gtk4
 , gtk3
+, libhandy
 , gsettings-desktop-schemas
 , vte
 , gettext
@@ -61,6 +62,7 @@ stdenv.mkDerivation rec {
     glib
     gtk4
     gtk3
+    libhandy
     gsettings-desktop-schemas
     vte
     libuuid
