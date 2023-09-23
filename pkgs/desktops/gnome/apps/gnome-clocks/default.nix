@@ -13,7 +13,6 @@
 , libxml2
 , gtk4
 , glib
-, gsound
 , sound-theme-freedesktop
 , gsettings-desktop-schemas
 , gnome-desktop
@@ -45,9 +44,6 @@ stdenv.mkDerivation rec {
     desktop-file-utils
     libxml2
     gobject-introspection # for finding vapi files
-    # error: Package `...' not found in specified Vala API directories or GObject-Introspection GIR directories
-    # TODO: the vala setuphook should look for vala filess in targetOffset instead of hostOffset
-    gsound
   ];
 
   buildInputs = [
@@ -59,7 +55,6 @@ stdenv.mkDerivation rec {
     geocode-glib_2
     geoclue2
     libgweather
-    gsound
     libadwaita
   ];
 
