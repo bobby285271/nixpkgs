@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     owner = "chergert";
     repo = "libspelling";
     rev = version;
-    hash = "sha256-R3nPs16y8XGamQvMSF7wb52h0jxt17H2FZPwauLDI/c=";
+    hash = "sha256-OOSQgdtnEx6/5yKwavCGdY/5L0Mr3XW0Srmd42ZTdUk=";
   };
 
   nativeBuildInputs = [
