@@ -12,6 +12,7 @@
 , glib
 , gtk4
 , libadwaita
+, libgee
 , libgtop
 , gnome
 , tracker
@@ -41,6 +42,7 @@ stdenv.mkDerivation rec {
     glib
     gtk4
     libadwaita
+    libgee
     libgtop
     tracker
   ];
