@@ -10,7 +10,7 @@
 , ncurses
 , meson
 , ninja
-, isPy3k
+, pythonOlder
 , gnome
 , python
 }:
@@ -21,7 +21,7 @@ buildPythonPackage rec {
 
   outputs = [ "out" "dev" ];
 
-  disabled = !isPy3k;
+  disabled = pythonOlder "3.8";
 
   format = "other";
 
