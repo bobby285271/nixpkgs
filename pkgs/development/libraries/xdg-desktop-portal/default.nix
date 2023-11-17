@@ -105,6 +105,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   mesonFlags = [
+    "--sysconfdir=/etc"
     "-Dinstalled-tests=true"
     "-Dinstalled_test_prefix=${placeholder "installedTests"}"
   ] ++ lib.optionals (!enableGeoLocation) [
