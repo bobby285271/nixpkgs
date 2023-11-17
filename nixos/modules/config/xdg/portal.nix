@@ -94,8 +94,7 @@ in
       };
       description = lib.mdDoc ''
         Sets which portal backend should be used to provide the implementation
-        for the requested interface. For details check `portals.conf(5)` or
-        [this docs](https://github.com/flatpak/xdg-desktop-portal/blob/main/doc/portals-conf.rst).
+        for the requested interface. For details check {manpage}`portals.conf(5)`.
 
         Configs will be linked to `/etx/xdg/xdg-desktop-portal/` with the name `$desktop-portals.conf`
         for `xdg.portal.config.$desktop` and `portals.conf` for `xdg.portal.config.common`
