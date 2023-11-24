@@ -50,7 +50,7 @@
 , gsettings-desktop-schemas
 , librsvg
 , makeWrapper
-}:
+, fetchpatch}:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "flatpak";
@@ -97,6 +97,25 @@ stdenv.mkDerivation (finalAttrs: {
     # The icon validator needs to access the gdk-pixbuf loaders in the Nix store
     # and cannot bind FHS paths since those are not available on NixOS.
     finalAttrs.passthru.icon-validator-patch
+
+    # Fix build with AppStream 1.0
+    (fetchpatch {
+      url = "https://github.com/flatpak/flatpak/commit/556984e1c142e5c65f047ad7af9c7a11c34c8419.patch";
+      excludes = ["meson.build"];
+      hash = "sha256-SWNaMHlCAP56KNKApanHmQqmvxj4WsFomXqDJvKhRy0=";
+    })
+    (fetchpatch {
+      url = "https://github.com/flatpak/flatpak/commit/7a55b7c49f567bad371ecb18d2ef1833f337065a.patch";
+      hash = "sha256-MGWYyemtDRrsyyQM9RZe3fkPE5FXQIYQaQUFyMs/TMY=";
+    })
+    (fetchpatch {
+      url = "https://github.com/flatpak/flatpak/commit/02bef871c046fc7377b8357b47e79d3257036c4e.patch";
+      hash = "sha256-wG9BfSXBPhhOzWmotzk56XqpnTWwUZ5ue9DbRNGDEms=";
+    })
+    (fetchpatch {
+      url = "https://github.com/flatpak/flatpak/commit/c0c466f269d96b27b5b477a67f903a6229b2df93.patch";
+      hash = "sha256-EOSIZU71MF+Oik4Sq61CIptbGE1LwNmE5mG138m1BgI=";
+    })
   ];
 
   nativeBuildInputs = [
