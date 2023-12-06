@@ -37,14 +37,6 @@ stdenv.mkDerivation rec {
 
   patches = [
     # Fix building against libappstream 1.0
-    (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/libadwaita/-/commit/c579fbe0c10d2b761cfe1fe4e825aaa19fe81c77.patch";
-      hash = "sha256-mi1mB0xVC1mIYFrpGoxLQb3pQjHbKQ1XZ6PCUi1rahY=";
-    })
-    (fetchpatch {
-      url = "https://gitlab.gnome.org/GNOME/libadwaita/-/commit/3e3967d5f69180644519936991cad10136e84ca9.patch";
-      hash = "sha256-AZoltE8YRDMHNbcXBKuJ5LNSUR7SFJC1GkbllvIjPUY=";
-    })
     # fix "Validate appstream file" test
     (fetchpatch {
       url = "https://gitlab.gnome.org/GNOME/libadwaita/-/commit/282b2a3445296da98b7e438d938bdcf590e00d3f.patch";
