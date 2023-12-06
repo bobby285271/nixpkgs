@@ -29,6 +29,7 @@ makeScopeWithSplicing' {
   inherit stdenv;
 
   # LIBRARIES
+  appstream-qt = callPackage ../development/libraries/appstream/qt.nix { };
 
   qt6ct = callPackage ../tools/misc/qt6ct { };
 
