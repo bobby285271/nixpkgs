@@ -59,24 +59,12 @@ stdenv.mkDerivation rec {
       hash = "sha256-ke+pSm22wvNxPifmoiXgV+EeDgpNDcGhsiytxy6BG3k=";
     })
 
-    # Fix darwin build.
-    # https://github.com/ximion/appstream/issues/551
-    (fetchpatch2 {
-      url = "https://github.com/ximion/appstream/commit/02ee2d0daaeda96b5a1800a48cbcf68fbb721374.patch";
-      hash = "sha256-x+/Lx6/5/KQUCjq112paV/IzGY24APWc5+BYH5fYlNo=";
-    })
-
     # Fix Qt5 build.
     # https://github.com/ximion/appstream/pull/554
     (fetchpatch2 {
       url = "https://github.com/ximion/appstream/commit/fed92f2a5420b3f2609007a44be7251e9602459e.patch";
       hash = "sha256-218LYEnK6FPOsNDYfJ9WTY4t46FRQv1cWzpxsD4JddQ=";
     })
-
-    # In file included from ../src/as-system-info.c:60:
-    # In file included from /nix/store/xxx-Libsystem-1238.60.2/include/sys/sysctl.h:83:
-    # /nix/store/xxx-Libsystem-1238.60.2/include/sys/ucred.h:91:2: error: unknown type name 'u_long'
-    ./fix-darwin-build.patch
   ];
 
   strictDeps = true;
@@ -122,6 +110,9 @@ stdenv.mkDerivation rec {
     "-Dinstalled_test_prefix=${placeholder "installedTests"}"
   ] ++ lib.optionals (!withSystemd) [
     "-Dsystemd=false"
+  ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
+    # https://github.com/ximion/appstream/pull/567
+    "-Dc_args=-D_DARWIN_C_SOURCE"
   ];
 
   passthru = {
