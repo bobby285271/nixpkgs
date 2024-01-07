@@ -69,7 +69,7 @@ in
 
 stdenv.mkDerivation rec {
   pname = "gtk4";
-  version = "4.12.3";
+  version = "4.13.4";
 
   outputs = [ "out" "dev" ] ++ lib.optionals x11Support [ "devdoc" ];
   outputBin = "dev";
@@ -81,7 +81,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "mirror://gnome/sources/gtk/${lib.versions.majorMinor version}/gtk-${version}.tar.xz";
-    sha256 = "FIziYvbIZIdFX7HZeTw/WLw+HaR3opYX+tsEIPWHCok=";
+    sha256 = "sxx1EQI6LOClFEs7a3IiH+tWPiO+Fk7N3Uh8qFm5xA8=";
   };
 
   patches = [
