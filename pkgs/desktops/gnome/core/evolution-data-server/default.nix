@@ -147,6 +147,8 @@ stdenv.mkDerivation rec {
       --replace "-Wl,--no-undefined" ""
     substituteInPlace src/services/evolution-alarm-notify/e-alarm-notify.c \
       --replace "G_OS_WIN32" "__APPLE__"
+    substituteInPlace src/addressbook/libebook-contacts/e-phone-number-private.cpp \
+      --replace "std::auto_ptr" "std::unique_ptr"
   '';
 
   postInstall = lib.optionalString stdenv.isDarwin ''
