@@ -30,11 +30,11 @@
 
 stdenv.mkDerivation rec {
   pname = "gitg";
-  version = "41";
+  version = "44";
 
   src = fetchurl {
     url = "mirror://gnome/sources/${pname}/${lib.versions.majorMinor version}/${pname}-${version}.tar.xz";
-    sha256 = "f7Ybn7EPuqVI0j1wZbq9cq1j5iHeVYQMBlzm45hsRik=";
+    sha256 = "NCoxaE2rlnHNNBvT485mWtzuBGDCoIHdxJPNvAMTJTA=";
   };
 
   patches = [
