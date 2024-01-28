@@ -51,6 +51,13 @@ stdenv.mkDerivation (finalAttrs: {
     ./plugins.patch
   ];
 
+  postPatch = ''
+    # Start requiring budgie-session
+    # https://github.com/BuddiesOfBudgie/budgie-desktop/pull/510
+    substituteInPlace src/session/budgie-desktop.in \
+      --replace-fail "gnome-session" "budgie-session"
+  '';
+
   nativeBuildInputs = [
     docbook-xsl-nons
     gtk-doc
