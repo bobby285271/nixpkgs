@@ -1,8 +1,8 @@
 diff --git a/src/orca/debug.py b/src/orca/debug.py
-index b7e11ea60..9ab996765 100644
+index eb939a236..4e4db2e84 100644
 --- a/src/orca/debug.py
 +++ b/src/orca/debug.py
-@@ -447,7 +447,7 @@ def traceit(frame, event, arg):
+@@ -522,7 +522,7 @@ def traceit(frame, event, arg):
      return traceit
  
  def getOpenFDCount(pid):
@@ -11,7 +11,7 @@ index b7e11ea60..9ab996765 100644
      procs = procs.decode('UTF-8').split('\n')
      files = list(filter(lambda s: s and s[0] == 'f' and s[1:].isdigit(), procs))
  
-@@ -465,7 +465,7 @@ def getCmdline(pid):
+@@ -540,7 +540,7 @@ def getCmdline(pid):
      return cmdline
  
  def pidOf(procName):
@@ -20,42 +20,11 @@ index b7e11ea60..9ab996765 100644
                                  shell=True,
                                  stdout=subprocess.PIPE).stdout
      pids = openFile.read()
-diff --git a/src/orca/orca.py b/src/orca/orca.py
-index d4e89f918..bb3e6cc1d 100644
---- a/src/orca/orca.py
-+++ b/src/orca/orca.py
-@@ -312,7 +312,7 @@ def updateKeyMap(keyboardEvent):
- 
- def _setXmodmap(xkbmap):
-     """Set the keyboard map using xkbcomp."""
--    p = subprocess.Popen(['xkbcomp', '-w0', '-', os.environ['DISPLAY']],
-+    p = subprocess.Popen(['@xkbcomp@', '-w0', '-', os.environ['DISPLAY']],
-         stdin=subprocess.PIPE, stdout=None, stderr=None)
-     p.communicate(xkbmap)
- 
-@@ -389,7 +389,7 @@ def _storeXmodmap(keyList):
-     """
- 
-     global _originalXmodmap
--    _originalXmodmap = subprocess.check_output(['xkbcomp', os.environ['DISPLAY'], '-'])
-+    _originalXmodmap = subprocess.check_output(['@xkbcomp@', os.environ['DISPLAY'], '-'])
- 
- def _restoreXmodmap(keyList=[]):
-     """Restore the original xmodmap values for the keys in keyList.
-@@ -404,7 +404,7 @@ def _restoreXmodmap(keyList=[]):
- 
-     global _capsLockCleared
-     _capsLockCleared = False
--    p = subprocess.Popen(['xkbcomp', '-w0', '-', os.environ['DISPLAY']],
-+    p = subprocess.Popen(['@xkbcomp@', '-w0', '-', os.environ['DISPLAY']],
-         stdin=subprocess.PIPE, stdout=None, stderr=None)
-     p.communicate(_originalXmodmap)
- 
 diff --git a/src/orca/orca_bin.py.in b/src/orca/orca_bin.py.in
-index 9d64af948..ca9c9e083 100644
+index c6f99de14..2370204f3 100755
 --- a/src/orca/orca_bin.py.in
 +++ b/src/orca/orca_bin.py.in
-@@ -65,7 +65,7 @@ class ListApps(argparse.Action):
+@@ -62,7 +62,7 @@ class ListApps(argparse.Action):
                  name = "[DEAD]"
  
              try:
@@ -64,7 +33,7 @@ index 9d64af948..ca9c9e083 100644
              except Exception:
                  cmdline = '(exception encountered)'
              else:
-@@ -198,7 +198,7 @@ def inGraphicalDesktop():
+@@ -195,7 +195,7 @@ def inGraphicalDesktop():
  def otherOrcas():
      """Returns the pid of any other instances of Orca owned by this user."""
  
@@ -73,16 +42,34 @@ index 9d64af948..ca9c9e083 100644
                                  shell=True,
                                  stdout=subprocess.PIPE).stdout
      pids = openFile.read()
-diff --git a/src/orca/script_utilities.py b/src/orca/script_utilities.py
-index ed8b155e4..0436cca42 100644
---- a/src/orca/script_utilities.py
-+++ b/src/orca/script_utilities.py
-@@ -144,7 +144,7 @@ class Utilities:
-             return ""
+diff --git a/src/orca/orca_modifier_manager.py b/src/orca/orca_modifier_manager.py
+index c45cd4a5b..3f2ec59f0 100644
+--- a/src/orca/orca_modifier_manager.py
++++ b/src/orca/orca_modifier_manager.py
+@@ -115,7 +115,7 @@ class OrcaModifierManager:
+         debug.printMessage(debug.LEVEL_INFO, msg, True)
  
-         try:
--            cmdline = subprocess.getoutput(f"cat /proc/{pid}/cmdline")
-+            cmdline = subprocess.getoutput(f"@cat@ /proc/{pid}/cmdline")
-         except Exception:
-             return ""
+         self.unset_orca_modifiers(reason)
+-        self._original_xmodmap = subprocess.check_output(['xkbcomp', os.environ['DISPLAY'], '-'])
++        self._original_xmodmap = subprocess.check_output(['@xkbcomp@', os.environ['DISPLAY'], '-'])
+         self._create_orca_xmodmap()
  
+     def update_key_map(self, keyboard_event):
+@@ -162,7 +162,7 @@ class OrcaModifierManager:
+             return
+ 
+         self._caps_lock_cleared = False
+-        p = subprocess.Popen(['xkbcomp', '-w0', '-', os.environ['DISPLAY']],
++        p = subprocess.Popen(['@xkbcomp@', '-w0', '-', os.environ['DISPLAY']],
+             stdin=subprocess.PIPE, stdout=None, stderr=None)
+         p.communicate(self._original_xmodmap)
+ 
+@@ -223,7 +223,7 @@ class OrcaModifierManager:
+         if modified:
+             msg = "ORCA MODIFIER MANAGER: Updating xmodmap"
+             debug.printMessage(debug.LEVEL_INFO, msg, True)
+-            p = subprocess.Popen(['xkbcomp', '-w0', '-', os.environ['DISPLAY']],
++            p = subprocess.Popen(['@xkbcomp@', '-w0', '-', os.environ['DISPLAY']],
+                 stdin=subprocess.PIPE, stdout=None, stderr=None)
+             p.communicate(bytes('\n'.join(lines), 'UTF-8'))
+         else:
