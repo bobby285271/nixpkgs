@@ -12,7 +12,7 @@
 , python3
 , polkit
 , networkmanager
-, gtk-doc
+, gi-docgen
 , docbook-xsl-nons
 , at-spi2-core
 , libstartup_notification
@@ -67,13 +67,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gnome-shell";
-  version = "45.4";
+  version = "46.beta";
 
   outputs = [ "out" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${lib.versions.major finalAttrs.version}/gnome-shell-${finalAttrs.version}.tar.xz";
-    sha256 = "W/6jeeEgscfyN/PsNprSfvXC9ZMMffFjs5J4LYWCCQ0=";
+    sha256 = "Ytr8k+Ca/4Mj3pkve1BKaB8k+7n6Oo7/hCpEEhjGvu0=";
   };
 
   patches = [
@@ -112,7 +112,7 @@ stdenv.mkDerivation (finalAttrs: {
     gettext
     docbook-xsl-nons
     docbook_xml_dtd_45
-    gtk-doc
+    gi-docgen
     perl
     wrapGAppsHook4
     sassc
@@ -211,6 +211,9 @@ stdenv.mkDerivation (finalAttrs: {
     for svc in org.gnome.ScreenSaver org.gnome.Shell.Extensions org.gnome.Shell.Notifications org.gnome.Shell.Screencast; do
       wrapGApp $out/share/gnome-shell/$svc
     done
+
+    # Cannot be in postInstall, otherwise _multioutDocs hook in preFixup will move right back.
+    moveToOutput "share/doc" "$devdoc"
   '';
 
   separateDebugInfo = true;
