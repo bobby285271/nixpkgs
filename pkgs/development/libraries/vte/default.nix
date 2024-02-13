@@ -22,7 +22,7 @@
 , pcre2
 , cairo
 , fribidi
-, zlib
+, lz4
 , icu
 , systemd
 , systemdSupport ? lib.meta.availableOn stdenv.hostPlatform systemd
@@ -31,13 +31,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "vte";
-  version = "0.74.2";
+  version = "0.75.91";
 
   outputs = [ "out" "dev" "devdoc" ];
 
   src = fetchurl {
     url = "mirror://gnome/sources/vte/${lib.versions.majorMinor finalAttrs.version}/vte-${finalAttrs.version}.tar.xz";
-    sha256 = "sha256-pTX7Kpj+qKJEnNGgLMz1GQEx3d/1LnFa/azj/rU26uc=";
+    sha256 = "sha256-5E6YjiU+dLrT/Ds96Vf6s3MyvHSZ3m67q7WcnMTeySU=";
   };
 
   patches = [
@@ -69,7 +69,7 @@ stdenv.mkDerivation (finalAttrs: {
     fribidi
     gnutls
     pcre2
-    zlib
+    lz4
     icu
   ] ++ lib.optionals systemdSupport [
     systemd
