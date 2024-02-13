@@ -13,11 +13,11 @@
 
 stdenv.mkDerivation rec {
   pname = "adwaita-icon-theme";
-  version = "45.0";
+  version = "46.beta";
 
   src = fetchurl {
     url = "mirror://gnome/sources/adwaita-icon-theme/${lib.versions.major version}/${pname}-${version}.tar.xz";
-    sha256 = "JEK/sG9ObMlb9uJoL9/5j6Xt3GiHUbnWIVxiPLTkL/E=";
+    sha256 = "aq40B2Nu2YMV9AtU4enFaM1ojkoEx0+Y3O/yezg2CFI=";
   };
 
   nativeBuildInputs = [
