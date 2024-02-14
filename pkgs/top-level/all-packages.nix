@@ -29215,6 +29215,8 @@ with pkgs;
 
   gsettings-desktop-schemas = callPackage ../development/libraries/gsettings-desktop-schemas { };
 
+  gsettings-desktop-schemas_46 = callPackage ../development/libraries/gsettings-desktop-schemas/46.nix { this-is-a-draft-pr = true; };
+
   gnome-icon-theme = callPackage ../data/icons/gnome-icon-theme { };
 
   go-font = callPackage ../data/fonts/go-font { };
