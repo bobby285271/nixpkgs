@@ -31851,6 +31851,10 @@ with pkgs;
     inherit (gst_all_1) gstreamer gst-plugins-base gst-plugins-good;
   };
 
+  freerdp_3 = callPackage ../applications/networking/remote/freerdp/3.nix {
+    inherit (darwin.apple_sdk.frameworks) AudioToolbox AVFoundation Carbon Cocoa CoreMedia;
+  };
+
   freerdpUnstable = freerdp;
 
   friture = libsForQt5.callPackage ../applications/audio/friture {
