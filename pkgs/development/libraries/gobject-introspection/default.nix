@@ -1,6 +1,7 @@
 { stdenv
 , lib
 , fetchurl
+, fetchpatch2
 , glib
 , flex
 , bison
@@ -22,6 +23,7 @@
 , nixStoreDir ? builtins.storeDir
 , x11Support ? true
 , testers
+, propagateFullGlib ? true
 }:
 
 # now that gobject-introspection creates large .gir files (eg gtk3 case)
@@ -39,7 +41,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gobject-introspection";
-  version = "1.78.1";
+  version = "1.79.1";
 
   # outputs TODO: share/gobject-introspection-1.0/tests is needed during build
   # by pygobject3 (and maybe others), but it's only searched in $out
@@ -48,7 +50,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "mirror://gnome/sources/gobject-introspection/${lib.versions.majorMinor finalAttrs.version}/gobject-introspection-${finalAttrs.version}.tar.xz";
-    sha256 = "vXur2Zr3JY52gZ5Fukprw5lgj+di2D/ePKwDPFCEG7Q=";
+    sha256 = "+A6jPuBcpI+5l5UrtGExz73TdR9/XaBoiIc5y+stVEM=";
   };
 
   patches = [
@@ -58,6 +60,13 @@ stdenv.mkDerivation (finalAttrs: {
     (substituteAll {
       src = ./absolute_shlib_path.patch;
       inherit nixStoreDir;
+    })
+
+    # girepository: Skip GIRepository versions not matching GIRepository-2.0
+    # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/441
+    (fetchpatch2 {
+      url = "https://gitlab.gnome.org/GNOME/gobject-introspection/-/commit/171f1804dc76dfcc2857e809d49a2290b15612c4.patch";
+      hash = "sha256-rAOuz8EB5bACG+5tgvA0Z/vGkFBPNUqryXFNNUjlOEc=";
     })
   ] ++ lib.optionals x11Support [
     # Hardcode the cairo shared library path in the Cairo gir shipped with this package.
@@ -95,7 +104,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   propagatedBuildInputs = [
     libffi
-    glib'
+    (if propagateFullGlib then glib else glib')
   ];
 
   mesonFlags = [
