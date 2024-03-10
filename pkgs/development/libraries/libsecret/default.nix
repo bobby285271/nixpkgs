@@ -79,6 +79,10 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     patchShebangs ./tool/test-*.sh
+
+    # https://gitlab.gnome.org/GNOME/libsecret/-/merge_requests/141
+    substituteInPlace libsecret/meson.build \
+      --replace-fail "test_typelib_env.set" "test_typelib_env.prepend"
   '';
 
   preCheck = ''
