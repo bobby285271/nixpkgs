@@ -61,6 +61,10 @@ stdenv.mkDerivation (finalAttrs: {
     };
   };
 
+  depsBuildBuild = [
+    pkg-config
+  ];
+
   nativeBuildInputs = [
     appstream
     desktop-file-utils
@@ -104,6 +108,12 @@ stdenv.mkDerivation (finalAttrs: {
   ] ++ lib.optionals (!withLibsecret) [
     "-Dkeyring=disabled"
   ];
+
+  postPatch = ''
+    # This should be a build-time dep for build.
+    substituteInPlace help/meson.build \
+      --replace-fail "find_program('gi-docgen'" "find_program('gi-docgen', native: true"
+  '';
 
   preFixup = ''
     gappsWrapperArgs+=(--prefix XDG_DATA_DIRS : "${shared-mime-info}/share")
