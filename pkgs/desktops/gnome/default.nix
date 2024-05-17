@@ -93,9 +93,6 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   mutter = callPackage ./core/mutter { };
 
-  # Needed for elementary's gala, wingpanel and greeter until support for higher versions is provided
-  mutter43 = callPackage ./core/mutter/43 { };
-
   nautilus = callPackage ./core/nautilus { };
 
   networkmanager-openvpn = pkgs.networkmanager-openvpn.override {
@@ -261,4 +258,5 @@ lib.makeScope pkgs.newScope (self: with self; {
 #### Removals
   anjuta = throw "`anjuta` was removed after not being maintained upstream and losing control of its official domain."; # 2024-01-16
   gnome-settings-daemon43 = throw "`gnome-settings-daemon43` was removed as this is no longer needed by Pantheon."; # 2024-05-17
+  mutter43 = throw "`mutter43` was removed as this is no longer needed by Pantheon."; # 2024-05-17
 }
