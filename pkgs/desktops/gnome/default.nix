@@ -75,9 +75,6 @@ lib.makeScope pkgs.newScope (self: with self; {
 
   gnome-settings-daemon = callPackage ./core/gnome-settings-daemon { };
 
-  # Using 43 to match Mutter used in Pantheon
-  gnome-settings-daemon43 = callPackage ./core/gnome-settings-daemon/43 { };
-
   gnome-software = callPackage ./core/gnome-software { };
 
   gnome-system-monitor = callPackage ./core/gnome-system-monitor { };
@@ -263,4 +260,5 @@ lib.makeScope pkgs.newScope (self: with self; {
 
 #### Removals
   anjuta = throw "`anjuta` was removed after not being maintained upstream and losing control of its official domain."; # 2024-01-16
+  gnome-settings-daemon43 = throw "`gnome-settings-daemon43` was removed as this is no longer needed by Pantheon."; # 2024-05-17
 }
