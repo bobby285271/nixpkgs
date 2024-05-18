@@ -14,6 +14,7 @@
 , granite
 , libgee
 , libhandy
+, gnome-desktop
 , gnome-settings-daemon
 , mesa
 , mutter
@@ -30,13 +31,13 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-greeter";
-  version = "7.0.0";
+  version = "7.0.0-unstable-2024-05-17";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = "greeter";
-    rev = version;
-    sha256 = "sha256-m/xuaMCAPoqhl/M547mdafBPBu3UhHmVmBIUKQoS5L8=";
+    rev = "4f008371431edb9f8a2339bc486603750b2b61df";
+    sha256 = "sha256-LAPCXKDpOVa4/XbY703esK7ciE6dqXwWsURDl8nJGys=";
   };
 
   patches = [
@@ -60,6 +61,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     accountsservice
     elementary-icon-theme
+    gnome-desktop
     gnome-settings-daemon
     gdk-pixbuf
     granite
