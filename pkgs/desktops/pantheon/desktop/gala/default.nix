@@ -14,6 +14,7 @@
 , gtk3
 , granite
 , libgee
+, libhandy
 , bamf
 , libcanberra-gtk3
 , gnome-desktop
@@ -21,19 +22,19 @@
 , mutter
 , gnome-settings-daemon
 , wrapGAppsHook3
-, gexiv2
+, sqlite
 , systemd
 }:
 
 stdenv.mkDerivation rec {
   pname = "gala";
-  version = "7.1.3";
+  version = "7.1.3-unstable-2024-05-05";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = pname;
-    rev = version;
-    sha256 = "sha256-0fDbR28gh7F8Bcnofn48BBP1CTsYnfmY5kG72ookOXw=";
+    rev = "196d2498a257d8af48221b1999639bcce8b80eb1";
+    sha256 = "sha256-UJ8T/oGUwSKV1L8sub8tpMLeeAfyNEk8PCqGnCGjyFA=";
   };
 
   patches = [
@@ -41,18 +42,18 @@ stdenv.mkDerivation rec {
     # there are multiple plugin providers (e.g. gala and wingpanel).
     ./plugins-dir.patch
 
-    # Start gala-daemon internally (needed for systemd managed gnome-session)
-    # https://github.com/elementary/gala/pull/1844
-    (fetchpatch {
-      url = "https://github.com/elementary/gala/commit/351722c5a4fded46992b725e03dc94971c5bd31f.patch";
-      hash = "sha256-RvdVHQjCUNmLrROBZTF+m1vE2XudtQZjk/YW28P/vKc=";
-    })
-
     # InternalUtils: Fix window placement
     # https://github.com/elementary/gala/pull/1913
     (fetchpatch {
       url = "https://github.com/elementary/gala/commit/2d30bee678788c5a853721d16b5b39c997b23c02.patch";
       hash = "sha256-vhGFaLpJZFx1VTfjY1BahQiOUvBPi0dBSXLGhYc7r8A=";
+    })
+
+    # BackgroundManager: Don't set visible
+    # https://github.com/elementary/gala/pull/1910
+    (fetchpatch {
+      url = "https://github.com/elementary/gala/commit/e0e8bb7a70069719eb822aabd46dc66a38996e9e.patch";
+      hash = "sha256-eYgvbbEVSjvwmH0AZJMKG5Kfv45tuYt85PwAxBEl468=";
     })
   ];
 
@@ -69,16 +70,16 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    bamf
     gnome-settings-daemon
-    gexiv2
     gnome-desktop
     granite
     gtk3
     libcanberra-gtk3
     libgee
+    libhandy
     mesa # for libEGL
     mutter
+    sqlite
     systemd
   ];
 
