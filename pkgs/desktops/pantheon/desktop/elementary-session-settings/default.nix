@@ -20,8 +20,7 @@
 }:
 
 let
-
-  executable = writeScript "pantheon" ''
+  common-export = ''
     # gnome-session can find RequiredComponents for `pantheon` session (notably pantheon's patched g-s-d autostarts)
     export XDG_CONFIG_DIRS=@out@/etc/xdg:$XDG_CONFIG_DIRS
 
@@ -31,10 +30,17 @@ let
     # * gnome-session can find the `pantheon' session
     # * use pantheon-mimeapps.list
     export XDG_DATA_DIRS=@out@/share:$XDG_DATA_DIRS
+  '';
 
+  executable = writeScript "pantheon" (common-export + ''
     # Start pantheon session. Keep in sync with upstream
     exec ${gnome-session}/bin/gnome-session --session=pantheon "$@"
-  '';
+  '');
+
+  executable-wayland = writeScript "pantheon-wayland" (common-export + ''
+    # Start pantheon-wayland session. Keep in sync with upstream
+    exec ${gnome-session}/bin/gnome-session --session=pantheon-wayland "$@"
+  '');
 
   # Absolute path patched version of the upstream xsession
   xsession = writeText "pantheon.desktop" ''
@@ -48,6 +54,16 @@ let
     Type=Application
   '';
 
+  wayland-session = writeText "pantheon-wayland.desktop" ''
+    [Desktop Entry]
+    Name=Pantheon (Wayland)
+    Comment=This session provides elementary experience
+    Exec=@out@/libexec/pantheon-wayland
+    TryExec=${wingpanel}/bin/io.elementary.wingpanel
+    Icon=
+    DesktopNames=Pantheon
+    Type=Application
+  '';
 in
 
 stdenv.mkDerivation rec {
@@ -84,6 +100,7 @@ stdenv.mkDerivation rec {
     "-Dfallback-session=GNOME"
     "-Ddetect-program-prefixes=true"
     "--sysconfdir=${placeholder "out"}/etc"
+    "-Dwayland=true"
   ];
 
   postInstall = ''
@@ -95,10 +112,12 @@ stdenv.mkDerivation rec {
     # script `Exec` to start pantheon
     mkdir -p $out/libexec
     substitute ${executable} $out/libexec/pantheon --subst-var out
-    chmod +x $out/libexec/pantheon
+    substitute ${executable-wayland} $out/libexec/pantheon-wayland --subst-var out
+    chmod +x $out/libexec/pantheon{,-wayland}
 
     # absolute path patched xsession
     substitute ${xsession} $out/share/xsessions/pantheon.desktop --subst-var out
+    substitute ${wayland-session} $out/share/wayland-sessions/pantheon-wayland.desktop --subst-var out
   '';
 
   passthru = {
@@ -106,6 +125,7 @@ stdenv.mkDerivation rec {
 
     providedSessions = [
       "pantheon"
+      "pantheon-wayland"
     ];
   };
 
