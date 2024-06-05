@@ -31,13 +31,13 @@
 
 stdenv.mkDerivation rec {
   pname = "elementary-greeter";
-  version = "7.0.0-unstable-2024-05-17";
+  version = "7.0.0-unstable-2024-06-05";
 
   src = fetchFromGitHub {
     owner = "elementary";
     repo = "greeter";
-    rev = "4f008371431edb9f8a2339bc486603750b2b61df";
-    sha256 = "sha256-LAPCXKDpOVa4/XbY703esK7ciE6dqXwWsURDl8nJGys=";
+    rev = "4debfada42293905789693646ac858c942874cae";
+    sha256 = "sha256-wt9LslFjZLqltshSyixC1XPXM20TCfzjHDTLFdSXOJI=";
   };
 
   patches = [
