@@ -1,4 +1,4 @@
-{ fetchurl
+{ fetchFromGitLab
 , lib
 , stdenv
 , meson
@@ -9,7 +9,7 @@
 , gtk3
 , atk
 , gobject-introspection
-, spidermonkey_115
+, spidermonkey_128
 , pango
 , cairo
 , readline
@@ -28,17 +28,20 @@
 
 let
   testDeps = [
-    gtk3 atk pango.out gdk-pixbuf harfbuzz
+    glib.out gtk3 atk pango.out gdk-pixbuf harfbuzz
   ];
 in stdenv.mkDerivation (finalAttrs: {
   pname = "gjs";
-  version = "1.80.2";
+  version = "1.81.2-trying-this-on-ofborg-will-drop-this-later";
 
   outputs = [ "out" "dev" "installedTests" ];
 
-  src = fetchurl {
-    url = "mirror://gnome/sources/gjs/${lib.versions.majorMinor finalAttrs.version}/gjs-${finalAttrs.version}.tar.xz";
-    hash = "sha256-E145xaxZEJYjPlV8/ld9ZAk/UFRBHUfLLiFLrX1Bmb0=";
+  src = fetchFromGitLab {
+    domain = "gitlab.gnome.org";
+    owner = "GNOME";
+    repo = "gjs";
+    rev = "a6283f98f8659fb4e2c3d70ba9e30ac4eb993e22";
+    hash = "sha256-YNEBxEvt3xirzCCrp3lfVt9+kKw7bazsrIr2GAk2ZIw=";
   };
 
   patches = [
@@ -70,7 +73,7 @@ in stdenv.mkDerivation (finalAttrs: {
     cairo
     readline
     libsysprof-capture
-    spidermonkey_115
+    spidermonkey_128
   ];
 
   nativeCheckInputs = [
@@ -147,7 +150,7 @@ in stdenv.mkDerivation (finalAttrs: {
     description = "JavaScript bindings for GNOME";
     homepage = "https://gitlab.gnome.org/GNOME/gjs/blob/master/doc/Home.md";
     license = licenses.lgpl2Plus;
-    maintainers = teams.gnome.members;
+    maintainers = [ ]; # the gjs commit will be dropped before merge
     platforms = platforms.unix;
   };
 })
