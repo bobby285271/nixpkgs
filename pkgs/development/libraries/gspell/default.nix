@@ -54,6 +54,12 @@ stdenv.mkDerivation rec {
     enchant2
   ];
 
+  mesonFlags = lib.optionals stdenv.isDarwin [ "-Dc_args=-xobjective-c" ];
+
+  # env = lib.optionalAttrs stdenv.isDarwin {
+  #   NIX_LDFLAGS = toString [ "-framework Cocoa" ];
+  # };
+
   passthru = {
     updateScript = gnome.updateScript {
       packageName = pname;
