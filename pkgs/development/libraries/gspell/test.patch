@@ -9,7 +9,7 @@ index c5156a0..b771d6d 100644
 +gspell_static_lib_c_args = ['-DGSPELL_COMPILATION']
 +gspell_static_lib_link_args = []
 +
-+if host_machine.system() == 'darwin':
++if host_machine.system() == 'darwin'
 +  GSPELL_PRIVATE_HEADERS += ['gspell-osx.h']
 +  gspell_private_c_files += ['gspell-osx.c']
 +
