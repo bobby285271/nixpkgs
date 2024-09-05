@@ -33,6 +33,10 @@ stdenv.mkDerivation rec {
     sha256 = "zO1F6Ykro1wxuaEdYqnhVC5d/Wj3+zfDNbp0SfIM1hU=";
   };
 
+  patches = [
+    ./test.patch
+  ];
+
   nativeBuildInputs = [
     docbook-xsl-nons
     glib # glib-mkenums
