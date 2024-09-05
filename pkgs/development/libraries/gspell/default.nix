@@ -60,10 +60,10 @@ stdenv.mkDerivation rec {
 
   # Meson version of https://github.com/Homebrew/homebrew-core/blob/2a27fb86b08afc7ae6dff79cf64aafb8ecc93275/Formula/gspell.rb#L125-L149
   # Dropped the GTK_MAC_* changes since gtk-mac-integration is not needed since 1.12.1
-  mesonFlags = lib.optionals stdenv.isDarwin [ "-Dc_args=-xobjective-c" ];
-  env = lib.optionalAttrs stdenv.isDarwin {
-    NIX_LDFLAGS = toString [ "-framework Cocoa" ];
-  };
+  # mesonFlags = lib.optionals stdenv.isDarwin [ "-Dc_args=-xobjective-c" ];
+  # env = lib.optionalAttrs stdenv.isDarwin {
+  #   NIX_LDFLAGS = toString [ "-framework Cocoa" ];
+  # };
 
   passthru = {
     updateScript = gnome.updateScript {
