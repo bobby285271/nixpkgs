@@ -35940,7 +35940,7 @@ with pkgs;
   mate = recurseIntoAttrs (callPackage ../desktops/mate { });
 
   # Needed for elementary's gala, wingpanel and greeter until support for higher versions is provided
-  mutter43 = callPackage ../by-name/mu/mutter/43 { };
+  mutter46 = callPackage ../by-name/mu/mutter/46 { };
 
   pantheon = recurseIntoAttrs (callPackage ../desktops/pantheon { });
 
