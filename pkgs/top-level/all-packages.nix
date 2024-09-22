@@ -35908,8 +35908,8 @@ with pkgs;
 
   gnome-session-ctl = callPackage ../by-name/gn/gnome-session/ctl.nix { };
 
-  # Using 43 to match Mutter used in Pantheon
-  gnome-settings-daemon43 = callPackage ../by-name/gn/gnome-settings-daemon/43 { };
+  # Using 46 to match Mutter used in Pantheon
+  gnome-settings-daemon46 = callPackage ../by-name/gn/gnome-settings-daemon/46 { };
 
   gnustep = recurseIntoAttrs (callPackage ../desktops/gnustep { });
 
