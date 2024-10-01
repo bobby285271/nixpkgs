@@ -22,6 +22,7 @@
 , libpanel
 , libpeas2
 , libportal-gtk4
+, libspelling
 , libsysprof-capture
 , libxml2
 , meson
@@ -96,6 +97,7 @@ stdenv.mkDerivation (finalAttrs: {
     libadwaita
     libdex
     libpanel
+    libspelling
     libsysprof-capture
     libxml2
     ostree
