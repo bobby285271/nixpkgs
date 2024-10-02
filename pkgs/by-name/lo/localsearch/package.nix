@@ -121,11 +121,6 @@ stdenv.mkDerivation (finalAttrs: {
   mesonFlags = [
     # TODO: tests do not like our sandbox
     "-Dfunctional_tests=false"
-
-    # libgrss is unmaintained and has no new releases since 2015, and an open
-    # security issue since then. Despite a patch now being availab, we're opting
-    # to be safe due to the general state of the project
-    "-Dminer_rss=false"
   ] ++ lib.optionals (!stdenv.isLinux) [
     "-Dbattery_detection=none"
     "-Dnetwork_manager=disabled"
