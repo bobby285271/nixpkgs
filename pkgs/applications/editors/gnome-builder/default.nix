@@ -10,8 +10,6 @@
 , libgit2-glib
 , gi-docgen
 , gobject-introspection
-, enchant
-, icu
 , gom
 , gtk4
 , gtksourceview5
@@ -86,8 +84,6 @@ stdenv.mkDerivation (finalAttrs: {
     libpeas2
     libportal-gtk4
     vte-gtk4
-    enchant
-    icu
     gom
     gtk4
     gtksourceview5
