@@ -28,7 +28,6 @@
 , meson
 , ninja
 , ostree
-, d-spy
 , pcre2
 , pkg-config
 , python3
@@ -101,7 +100,6 @@ stdenv.mkDerivation (finalAttrs: {
     libsysprof-capture
     libxml2
     ostree
-    d-spy
     pcre2
     python3
     template-glib
