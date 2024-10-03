@@ -38,7 +38,6 @@
 , x11Support ? stdenv.isLinux
 , waylandSupport ? stdenv.isLinux
 , libGL
-# experimental and can cause crashes in inspector
 , vulkanSupport ? stdenv.isLinux
 , shaderc
 , vulkan-loader
