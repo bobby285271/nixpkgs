@@ -1,5 +1,6 @@
 { lib
 , mkXfceDerivation
+, wayland-scanner
 , exo
 , garcon
 , gtk3
@@ -12,6 +13,7 @@
 , withUpower ? true
 , xfconf
 , xf86inputlibinput
+, wlr-protocols
 , colord
 , withColord ? true
 }:
@@ -19,9 +21,13 @@
 mkXfceDerivation {
   category = "xfce";
   pname = "xfce4-settings";
-  version = "4.18.6";
+  version = "4.19.2";
 
-  sha256 = "sha256-xiu26B3dbWu+/AtF/iUC6Wo2U5ZZyzN9RfdbBaQRJ1M=";
+  sha256 = "sha256-fHR1/ThRoP5tuwTTW3Ge98uhsC9M7WqpTza939KpuhU=";
+
+  nativeBuildInputs = [
+    wayland-scanner
+  ];
 
   buildInputs = [
     exo
@@ -34,6 +40,7 @@ mkXfceDerivation {
     libxklavier
     xf86inputlibinput
     xfconf
+    wlr-protocols
   ]
   ++ lib.optionals withUpower [ upower ]
   ++ lib.optionals withColord [ colord ];
