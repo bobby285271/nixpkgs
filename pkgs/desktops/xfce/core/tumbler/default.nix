@@ -19,9 +19,9 @@
 mkXfceDerivation {
   category = "xfce";
   pname = "tumbler";
-  version = "4.18.2";
+  version = "4.19.1";
 
-  sha256 = "sha256-thioE0q2qnV4weJFPz8OWoHIRuUcXnQEviwBtCWsSV4=";
+  sha256 = "sha256-e9i0yZOFE6I6xaWGq3/1OsvkseV25zbW49l4qvAucyw=";
 
   buildInputs = [
     libxfce4util
