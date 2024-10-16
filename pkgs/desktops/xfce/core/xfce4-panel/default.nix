@@ -1,24 +1,32 @@
 { lib
 , mkXfceDerivation
+, cairo
 , exo
 , garcon
 , gobject-introspection
+, gtk-layer-shell
 , gtk3
 , libdbusmenu-gtk3
 , libwnck
 , libxfce4ui
 , libxfce4util
+, libxfce4windowing
 , tzdata
 , vala
+, wayland
 , xfconf
 }:
 
 mkXfceDerivation {
   category = "xfce";
   pname = "xfce4-panel";
-  version = "4.18.6";
+  version = "4.19.5";
 
-  sha256 = "sha256-eQLz/LJIx2WkzcSLytRdJdhtGv0woT48mdqG7eHB0U4=";
+  sha256 = "sha256-bcmEU4kh3X7e1NeHwBNyiZgueoaVMcPvibv/+sPwh9M=";
+
+  patches = [
+    ./unused-plugin-id.patch
+  ];
 
   nativeBuildInputs = [
     gobject-introspection
@@ -26,21 +34,23 @@ mkXfceDerivation {
   ];
 
   buildInputs = [
+    cairo
     exo
     garcon
+    gtk-layer-shell
     libdbusmenu-gtk3
     libxfce4ui
+    libxfce4windowing
     libwnck
-    xfconf
     tzdata
+    wayland
+    xfconf
   ];
 
   propagatedBuildInputs = [
     gtk3
     libxfce4util
   ];
-
-  patches = [ ./xfce4-panel-datadir.patch ];
 
   postPatch = ''
     substituteInPlace plugins/clock/clock.c \

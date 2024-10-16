@@ -1,0 +1,12 @@
+diff --git a/migrate/default.xml.in b/migrate/default.xml.in
+index 4634420..3674a6e 100644
+--- a/migrate/default.xml.in
++++ b/migrate/default.xml.in
+@@ -19,7 +19,6 @@
+         <value type="int" value="4"/>
+         <value type="int" value="5"/>
+         <value type="int" value="6"/>
+-        <value type="int" value="7"/>
+         <value type="int" value="8"/>
+         <value type="int" value="9"/>
+         <value type="int" value="10"/>
