@@ -3,9 +3,9 @@
 mkXfceDerivation {
   category = "xfce";
   pname = "xfce4-appfinder";
-  version = "4.18.1";
+  version = "4.19.2";
 
-  sha256 = "sha256-CZEX1PzFsVt72Fkb4+5PiZjAcDisvYnbzFGFXjFL4sc=";
+  sha256 = "sha256-iBcbKuS/X4vPln9DON+xmbvmDzMC40fAgn/ad7as6YM=";
 
   nativeBuildInputs = [ exo ];
   buildInputs = [ garcon gtk3 libxfce4ui libxfce4util xfconf ];
