@@ -4,18 +4,21 @@
 , wayland-scanner
 , glib
 , gtk3
+, libdisplay-info
 , libwnck
 , libX11
+, libXrandr
 , wayland
+, wayland-protocols
 , wlr-protocols
 }:
 
 mkXfceDerivation {
   category = "xfce";
   pname = "libxfce4windowing";
-  version = "4.19.3";
+  version = "4.19.7";
 
-  sha256 = "sha256-nsobRyGeagUq1WHzYBq6vd9g5A65KEQC4cX+m7w0pqg=";
+  sha256 = "sha256-a5oUtBH8ZfzeBuRZG4qrJCGvNxLsH1Vhxbvbd5wLvl4=";
 
   nativeBuildInputs = [
     gobject-introspection
@@ -25,9 +28,12 @@ mkXfceDerivation {
   buildInputs = [
     glib
     gtk3
+    libdisplay-info
     libwnck
     libX11
+    libXrandr
     wayland
+    wayland-protocols
     wlr-protocols
   ];
 
