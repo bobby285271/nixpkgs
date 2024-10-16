@@ -7,7 +7,7 @@
 , rev-prefix ? "${pname}-"
 , rev ? "${rev-prefix}${version}"
 , sha256
-, odd-unstable ? true
+, odd-unstable ? false
 , patchlevel-unstable ? true
 , passthru ? { }
 , meta ? { }
