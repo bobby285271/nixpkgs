@@ -18,8 +18,9 @@ mkXfceDerivation {
   category = "xfce";
   pname = "xfdesktop";
   version = "4.19.5";
+  rev = "56ddbe79e30b080f0ecfaeaa70fd7bc7f9befd8a";
 
-  sha256 = "sha256-Mf5S4wHK9IzGiFUE/CF7Z9kCwjAwlLLkDcicXABJlHY=";
+  sha256 = "sha256-Fglm15tStulTg0BATfLYwGSQYwFyTas4gY7X0GCaHeo=";
 
   buildInputs = [
     exo
@@ -34,6 +35,8 @@ mkXfceDerivation {
     gtk-layer-shell
     thunar
   ];
+
+  separateDebugInfo = true;
 
   meta = with lib; {
     description = "Xfce's desktop manager";
