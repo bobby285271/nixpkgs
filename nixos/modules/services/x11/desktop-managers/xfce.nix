@@ -69,6 +69,8 @@ in
         default = true;
         description = "Enable the XFCE screensaver.";
       };
+
+      enableWaylandSession = mkEnableOption "the experimental Xfce Wayland session";
     };
 
     environment.xfce.excludePackages = mkOption {
@@ -134,6 +136,7 @@ in
     programs.gnupg.agent.pinentryPackage = mkDefault pkgs.pinentry-gtk2;
     programs.xfconf.enable = true;
     programs.thunar.enable = true;
+    programs.labwc.enable = mkDefault cfg.enableWaylandSession;
 
     environment.pathsToLink = [
       "/share/xfce4"
@@ -152,6 +155,9 @@ in
         waitPID=$!
       '';
     }];
+    services.displayManager.sessionPackages = optionals cfg.enableWaylandSession [
+      pkgs.xfce.xfce4-session.waylandsession
+    ];
 
     services.xserver.updateDbusEnvironment = true;
     programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
