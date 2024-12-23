@@ -111,11 +111,22 @@ stdenv.mkDerivation {
     "share/syslinux/com32"
   ];
 
-  # Workaround build failure on -fno-common toolchains like upstream
-  # gcc-10. Otherwise build fails as:
-  #   ld: acpi/xsdt.o:/build/syslinux-b404870/com32/gpllib/../gplinclude/memory.h:40: multiple definition of
-  #     `e820_types'; memory.o:/build/syslinux-b404870/com32/gpllib/../gplinclude/memory.h:40: first defined here
-  env.NIX_CFLAGS_COMPILE = "-fcommon";
+  env = {
+    NIX_CFLAGS_COMPILE = toString (
+      [
+        # Workaround build failure on -fno-common toolchains like upstream
+        # gcc-10. Otherwise build fails as:
+        #   ld: acpi/xsdt.o:/build/syslinux-b404870/com32/gpllib/../gplinclude/memory.h:40: multiple definition of
+        #     `e820_types'; memory.o:/build/syslinux-b404870/com32/gpllib/../gplinclude/memory.h:40: first defined here
+        "-fcommon"
+      ]
+      ++ lib.optionals stdenv.cc.isGNU [
+        # Fix build with gcc-14.
+        # https://hydra.nixos.org/build/282290391/nixlog/3
+        "-Wno-error=incompatible-pointer-types"
+      ]
+    );
+  };
 
   makeFlags =
     [
