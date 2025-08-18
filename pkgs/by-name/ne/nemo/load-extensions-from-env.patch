@@ -38,3 +38,29 @@ index 944fc5f..983c396 100644
  
      GList *nd_providers;
      GList *l;
+diff --git a/libnemo-private/nemo-action-manager.c b/libnemo-private/nemo-action-manager.c
+index d99a1e8..5b243a5 100644
+--- a/libnemo-private/nemo-action-manager.c
++++ b/libnemo-private/nemo-action-manager.c
+@@ -574,6 +574,7 @@ nemo_action_manager_get_system_directory_path (const gchar *data_dir)
+ {
+     g_autofree gchar *nemo_path = NULL;
+     g_autofree gchar *target = NULL;
++    const gchar *actiondir = NULL;
+ 
+     nemo_path = g_build_filename (data_dir, "nemo", NULL);
+ 
+@@ -581,7 +582,12 @@ nemo_action_manager_get_system_directory_path (const gchar *data_dir)
+     // to prevent possible duplicate right-click menu items.
+     target = g_file_read_link (nemo_path, NULL);
+ 
+-    if (target) {
++    actiondir = g_getenv ("NEMO_ACTION_DIR");
++
++    if (actiondir) {
++        // Ignore the given data_dir in this case.
++        return g_strdup (actiondir);
++    } else if (target) {
+         return g_build_filename (target, "actions", NULL);
+     } else {
+         return g_build_filename (nemo_path, "actions", NULL);

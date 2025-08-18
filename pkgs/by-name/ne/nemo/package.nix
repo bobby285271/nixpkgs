@@ -21,6 +21,7 @@
   cinnamon-translations,
   libgsf,
   python3,
+  withWrapper ? true,
 }:
 
 let
@@ -47,6 +48,8 @@ stdenv.mkDerivation rec {
   patches = [
     # Load extensions from NEMO_EXTENSION_DIR environment variable
     # https://github.com/NixOS/nixpkgs/issues/78327
+    # Same for actions, to avoid duplications
+    # https://github.com/NixOS/nixpkgs/issues/190781
     ./load-extensions-from-env.patch
   ];
 
@@ -73,10 +76,14 @@ stdenv.mkDerivation rec {
     meson
     pkg-config
     ninja
-    wrapGAppsHook3
     intltool
     shared-mime-info
     gobject-introspection
+  ]
+  # Avoid double wrapping in nemo-with-extensions
+  # https://github.com/NixOS/nixpkgs/issues/434589
+  ++ lib.optionals withWrapper [
+    wrapGAppsHook3
   ];
 
   mesonFlags = [
