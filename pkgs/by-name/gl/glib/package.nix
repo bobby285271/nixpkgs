@@ -74,7 +74,7 @@ in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "glib";
-  version = "2.84.3";
+  version = "2.85.3";
 
   outputs = [
     "bin"
@@ -87,7 +87,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "mirror://gnome/sources/glib/${lib.versions.majorMinor finalAttrs.version}/glib-${finalAttrs.version}.tar.xz";
-    hash = "sha256-qk+HwyJb9XyoXzIIiPdISQGheTTKNwI8O9hDWnLbhj4=";
+    hash = "sha256-ryKeHeGR1mrrzbA8dJPHJP1NCmYoscpOofNXOSWbMR0=";
   };
 
   patches =
