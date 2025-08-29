@@ -69,7 +69,7 @@ stdenv.mkDerivation (finalAttrs: {
         hash = "sha256-SsyO5g7wlrxE7y2+VTHfmUDamofeZVqge8fv2y0ZhuU=";
       })
     ]
-    ++ lib.optionals (lib.versionAtLeast version "140" && stdenv.hostPlatform.isDarwin) [
+    ++ lib.optionals (lib.versionAtLeast version "140") [
       ./140-relax-apple-sdk.patch
     ];
 
