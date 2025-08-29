@@ -189,5 +189,7 @@ stdenv.mkDerivation (finalAttrs: {
       bobby285271
     ];
     platforms = platforms.unix;
+    # ERROR: Failed to find an adequate linker
+    broken = lib.versionOlder version "128" && stdenv.hostPlatform.isDarwin;
   };
 })
