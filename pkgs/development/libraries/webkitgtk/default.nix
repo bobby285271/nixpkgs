@@ -4,6 +4,7 @@
   buildPackages,
   runCommand,
   fetchurl,
+  fetchpatch,
   perl,
   python3,
   ruby,
@@ -104,7 +105,15 @@ clangStdenv.mkDerivation (finalAttrs: {
     hash = "sha256-5WS4CZ+aOuMkCVObKQu9KtCE6ZttItSqxeUeRVTfi8I=";
   };
 
-  patches = lib.optionals clangStdenv.hostPlatform.isLinux [
+  patches = [
+    # Fix build on riscv64
+    # https://bugs.webkit.org/show_bug.cgi?id=271371
+    (fetchpatch {
+      url = "https://salsa.debian.org/webkit-team/webkit/-/raw/7d9d4a27ac6dda7a37101bbef25e406361f97531/debian/patches/fix-ftbfs-riscv64.patch";
+      hash = "sha256-jUecr1I3PHOoC26M5gmhVKii+AsrreMX+bHLo7q4HYs=";
+    })
+  ]
+  ++ lib.optionals clangStdenv.hostPlatform.isLinux [
     (replaceVars ./fix-bubblewrap-paths.patch {
       inherit (builtins) storeDir;
       inherit (addDriverRunpath) driverLink;
