@@ -8,7 +8,7 @@
   vala,
   budgie-desktop,
   gtk3,
-  libpeas,
+  libpeas2,
   nix-update-script,
 }:
 
@@ -33,8 +33,13 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     budgie-desktop
     gtk3
-    libpeas
+    libpeas2
   ];
+
+  postPatch = ''
+    substituteInPlace meson.build \
+      --replace-fail "dependency('libpeas-1.0')" "dependency('libpeas-2')"
+  '';
 
   passthru = {
     updateScript = nix-update-script { };
