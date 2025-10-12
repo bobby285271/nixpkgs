@@ -7,7 +7,7 @@
   gtk3,
   libgee,
   libgtop,
-  libpeas,
+  libpeas2,
   meson,
   ninja,
   nix-update-script,
@@ -45,8 +45,13 @@ stdenv.mkDerivation (finalAttrs: {
     gtk3
     libgee
     libgtop
-    libpeas
+    libpeas2
   ];
+
+  postPatch = ''
+    substituteInPlace meson.build \
+      --replace-fail "dependency('libpeas-1.0', version: '>= 1.8.0')" "dependency('libpeas-2')"
+  '';
 
   passthru = {
     updateScript = nix-update-script { };
