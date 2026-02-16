@@ -19,12 +19,12 @@
 
 python3Packages.buildPythonApplication (finalAttrs: {
   pname = "showtime";
-  version = "49.1";
+  version = "50.beta";
   pyproject = false;
 
   src = fetchurl {
     url = "mirror://gnome/sources/showtime/${lib.versions.major finalAttrs.version}/showtime-${finalAttrs.version}.tar.xz";
-    hash = "sha256-iu+7DiAJx6HNRKuAGwbKN19+loPwKaBS64b7Qzp4U5M=";
+    hash = "sha256-ezJJj1y6UWuOYMVXNmnHonqCKSrxepi90GwvaMguoBM=";
   };
 
   strictDeps = true;
