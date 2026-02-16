@@ -73,7 +73,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "gnome-shell";
-  version = "49.4";
+  version = "50.beta";
 
   outputs = [
     "out"
@@ -82,7 +82,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "mirror://gnome/sources/gnome-shell/${lib.versions.major finalAttrs.version}/gnome-shell-${finalAttrs.version}.tar.xz";
-    hash = "sha256-nW8MovAUDBFPEU9nB0E2EfYU+x6mwxeo0fzEDDxZWwg=";
+    hash = "sha256-dB0WZad5vN1r4LpcyeDzpVyIw8v0qvRsbEClLlsJhoU=";
   };
 
   patches = [
