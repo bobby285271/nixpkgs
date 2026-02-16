@@ -36,7 +36,6 @@
   libxkbcommon,
   libpng,
   libtiff,
-  librsvg,
   libjpeg,
   libxml2,
   gnome,
@@ -77,7 +76,7 @@ in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gtk4";
-  version = "4.20.3";
+  version = "4.21.5";
 
   outputs = [
     "out"
@@ -93,14 +92,8 @@ stdenv.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "mirror://gnome/sources/gtk/${lib.versions.majorMinor finalAttrs.version}/gtk-${finalAttrs.version}.tar.xz";
-    hash = "sha256-KHPykDCIpmxxFz6i7YX/riZqZrlyw6SEK7svbxh+wVM=";
+    hash = "sha256-ZT2g1VahGj57fTbW77ybFkfLJbjoH0DslAvQh4niSBw=";
   };
-
-  # TODO: make it unconditional on rebuild, drop on version >= 4.20.4
-  patches = lib.optional stdenv.hostPlatform.is32bit (fetchpatch {
-    url = "https://gitlab.gnome.org/GNOME/gtk/-/commit/3b7ed49f26700c65fa9c6f41cf40d4fd5f921756.diff";
-    hash = "sha256-P6cE7fnR5W+H0EWQWJ3hYSu4MwMygPIfS6e0IiXlQv8=";
-  });
 
   depsBuildBuild = [
     pkg-config
@@ -118,6 +111,7 @@ stdenv.mkDerivation (finalAttrs: {
     sassc
     gi-docgen
     libxml2 # for xmllint
+    shared-mime-info
   ]
   ++ lib.optionals (compileSchemas && !stdenv.buildPlatform.canExecute stdenv.hostPlatform) [
     mesonEmulatorHook
@@ -134,7 +128,6 @@ stdenv.mkDerivation (finalAttrs: {
     libxkbcommon
     libpng
     libtiff
-    librsvg
     libjpeg
     (libepoxy.override { inherit x11Support; })
     isocodes
@@ -225,7 +218,7 @@ stdenv.mkDerivation (finalAttrs: {
   postPatch = ''
     # this conditional gates the installation of share/gsettings-schemas/.../glib-2.0/schemas/gschemas.compiled.
     substituteInPlace meson.build \
-      --replace 'if not meson.is_cross_build()' 'if ${lib.boolToString compileSchemas}'
+      --replace-fail 'if not meson.is_cross_build()' 'if ${lib.boolToString compileSchemas}'
 
     files=(
       build-aux/meson/gen-profile-conf.py
