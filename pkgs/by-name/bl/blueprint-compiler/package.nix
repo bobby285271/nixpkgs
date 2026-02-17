@@ -15,14 +15,14 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "blueprint-compiler";
-  version = "0.18.0";
+  version = "0.19.0";
 
   src = fetchFromGitLab {
     domain = "gitlab.gnome.org";
     owner = "GNOME";
     repo = "blueprint-compiler";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-3vAFkP/psM/IsFtzVOIVSU77Z+RV4d3N70U7ggrDqfo=";
+    tag = finalAttrs.version;
+    hash = "sha256-6csTgkYl0th4ciq3o1fxH3aZPc24qJk8KBWcdQLwyA0=";
   };
 
   postPatch = ''
@@ -89,6 +89,7 @@ stdenv.mkDerivation (finalAttrs: {
       benediktbroich
       ranfdev
     ];
+    teams = [ lib.teams.gnome ];
     platforms = lib.platforms.unix;
   };
 })
