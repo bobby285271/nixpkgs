@@ -6,6 +6,7 @@
   ninja,
   pkg-config,
   gi-docgen,
+  blueprint-compiler,
   docbook-xsl-nons,
   gettext,
   desktop-file-utils,
@@ -22,13 +23,15 @@
   shared-mime-info,
   libnotify,
   libexif,
+  libglycin,
+  libglycin-gtk4,
   libjxl,
   libseccomp,
   librsvg,
   webp-pixbuf-loader,
   tinysparql,
   localsearch,
-  gexiv2,
+  gexiv2_0_16,
   libselinux,
   libcloudproviders,
   gdk-pixbuf,
@@ -60,6 +63,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   nativeBuildInputs = [
+    blueprint-compiler
     desktop-file-utils
     gettext
     gobject-introspection
@@ -73,7 +77,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    gexiv2
+    gexiv2_0_16
     glib-networking
     icu
     gnome-desktop
@@ -85,6 +89,8 @@ stdenv.mkDerivation (finalAttrs: {
     libadwaita
     libportal-gtk4
     libexif
+    libglycin
+    libglycin-gtk4
     libnotify
     libseccomp
     libselinux
