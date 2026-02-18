@@ -19,6 +19,7 @@
   dconf,
   gtk3,
   pam,
+  polkit,
   libgudev,
   libselinux,
   keyutils,
@@ -30,7 +31,6 @@
   dbus,
   nixos-icons,
   runCommand,
-  udevCheckHook,
 }:
 
 let
@@ -74,7 +74,6 @@ stdenv.mkDerivation (finalAttrs: {
     ninja
     pkg-config
     gobject-introspection
-    udevCheckHook
   ];
 
   buildInputs = [
@@ -90,6 +89,7 @@ stdenv.mkDerivation (finalAttrs: {
     libgudev
     libselinux
     pam
+    polkit
     plymouth
     systemd
   ];
@@ -142,8 +142,6 @@ stdenv.mkDerivation (finalAttrs: {
     substituteInPlace meson.build \
       --replace-fail 'have_userdb = libsystemd_dep' 'have_userdb = false #'
   '';
-
-  doInstallCheck = true;
 
   preInstall = ''
     install -D ${override} "$DESTDIR/$out/share/glib-2.0/schemas/org.gnome.login-screen.gschema.override"
