@@ -133,11 +133,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   postPatch = ''
-    # Upstream checks some common paths to find an `X` binary. We already know it.
-    echo #!/bin/sh > build-aux/find-x-server.sh
-    echo "echo ${lib.getBin xorg-server}/bin/X" >> build-aux/find-x-server.sh
-    patchShebangs build-aux/find-x-server.sh
-
     # Reverts https://gitlab.gnome.org/GNOME/gdm/-/commit/b0f802e36ff948a415bfd2bccaa268b6990515b7
     # The gdm-auth-config tool is probably not too useful for NixOS, but we still want the dconf profile
     # installed (mostly just because .passthru.tests can make use of it).
