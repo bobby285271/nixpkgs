@@ -89,6 +89,9 @@ stdenv.mkDerivation (finalAttrs: {
       inherit glibc tzdata shadow;
       inherit cups networkmanagerapplet;
     })
+
+    # https://gitlab.gnome.org/GNOME/gnome-control-center/-/merge_requests/3324
+    ./fix-missing-polkit.patch
   ];
 
   nativeBuildInputs = [

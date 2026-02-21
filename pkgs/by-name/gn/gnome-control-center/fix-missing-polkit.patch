@@ -1,0 +1,12 @@
+diff --git a/panels/keyboard/meson.build b/panels/keyboard/meson.build
+index 419b06765d..d26c4bf768 100644
+--- a/panels/keyboard/meson.build
++++ b/panels/keyboard/meson.build
+@@ -111,6 +111,7 @@ deps = common_deps + [
+   accounts_dep,
+   keyboard_shortcuts_dep,
+   gnome_desktop_dep,
++  polkit_gobject_dep,
+ ]
+ 
+ if enable_ibus
