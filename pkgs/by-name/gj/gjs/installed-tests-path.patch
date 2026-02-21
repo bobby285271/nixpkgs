@@ -60,17 +60,6 @@ index 7a7c48ab..52508c2c 100644
      }
      configure_file(configuration: test_description_subst,
          input: 'debugger.test.in',
-diff --git a/installed-tests/script.test.in b/installed-tests/script.test.in
-index debefc4c..96a91b88 100644
---- a/installed-tests/script.test.in
-+++ b/installed-tests/script.test.in
-@@ -3,5 +3,5 @@
- 
- [Test]
- Type=session
--Exec=sh @prefix@/@installed_tests_execdir@/scripts/@name@
-+Exec=sh @installed_tests_execdir@/scripts/@name@
- Output=TAP
 diff --git a/meson.build b/meson.build
 index bbfe8bc8..e6f87dc3 100644
 --- a/meson.build

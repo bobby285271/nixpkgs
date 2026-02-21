@@ -6,8 +6,8 @@ index 0d118490..54c5507e 100755
  if test "$GJS_USE_UNINSTALLED_FILES" = "1"; then
      gjs="$TOP_BUILDDIR/gjs-console"
  else
--    gjs=gjs-console
-+    gjs=@gjsConsole@
+-    gjs="gjs-console"
++    gjs="@gjsConsole@"
  fi
  
  echo 1..1
