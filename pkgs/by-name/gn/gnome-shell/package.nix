@@ -111,6 +111,10 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://src.fedoraproject.org/rpms/gnome-shell/raw/dcd112d9708954187e7490564c2229d82ba5326f/f/0001-gdm-Work-around-failing-fingerprint-auth.patch";
       hash = "sha256-mgXty5HhiwUO1UV3/eDgWtauQKM0cRFQ0U7uocST25s=";
     })
+
+    # https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/4076
+    # https://gitlab.gnome.org/GNOME/gnome-shell/-/merge_requests/4079
+    ./fix-nixos-test-crash.patch
   ];
 
   nativeBuildInputs = [

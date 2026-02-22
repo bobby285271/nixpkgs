@@ -1,0 +1,17 @@
+diff --git a/js/ui/status/volume.js b/js/ui/status/volume.js
+index deadc16b7..99169e024 100644
+--- a/js/ui/status/volume.js
++++ b/js/ui/status/volume.js
+@@ -534,8 +534,11 @@ class InputIndicator extends VolumeIndicator {
+     }
+ 
+     _updatePrivacyIndicator() {
++        if (!this._input.stream)
++            return;
++
+         // Muted microphone doesn't need privacy indicator (no privacy concern)
+-        const {isMuted} = this._input._stream;
++        const {isMuted} = this._input.stream;
+         if (isMuted)
+             this._indicator.remove_style_class_name('privacy-indicator');
+         else
