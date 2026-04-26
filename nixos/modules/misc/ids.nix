@@ -176,7 +176,7 @@ in
       # polipo = 129; removed 2025-05-18
       mopidy = 130;
       #docker = 131; # unused
-      gdm = 132;
+      #gdm = 132; # unused
       #dhcpd = 133; # dynamically allocated as of 2021-09-03
       siproxd = 134;
       mlmmj = 135;

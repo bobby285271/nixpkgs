@@ -179,13 +179,6 @@ in
 
     users.users = lib.mkMerge [
       {
-        gdm = {
-          name = "gdm";
-          uid = config.ids.uids.gdm;
-          group = "gdm";
-          description = "GDM user";
-        };
-
         gdm-greeter = {
           isSystemUser = true;
           uid = 60578;
@@ -242,15 +235,15 @@ in
     };
 
     systemd.tmpfiles.rules = [
-      "d /run/gdm/.config 0711 gdm gdm"
+      "d /run/gdm/.config 0711 gdm-greeter gdm"
     ]
     ++ lib.optionals config.services.pulseaudio.enable [
-      "d /run/gdm/.config/pulse 0711 gdm gdm"
+      "d /run/gdm/.config/pulse 0711 gdm-greeter gdm"
       "L+ /run/gdm/.config/pulse/${pulseConfig.name} - - - - ${pulseConfig}"
     ]
     ++ lib.optionals config.services.gnome.gnome-initial-setup.enable [
       # Create stamp file for gnome-initial-setup to prevent it starting in GDM.
-      "f /run/gdm/.config/gnome-initial-setup-done 0711 gdm gdm - yes"
+      "f /run/gdm/.config/gnome-initial-setup-done 0711 gdm-greeter gdm - yes"
     ];
 
     # Otherwise GDM will not be able to start correctly and display Wayland sessions
