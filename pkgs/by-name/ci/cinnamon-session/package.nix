@@ -14,6 +14,7 @@
   python3,
   lib,
   stdenv,
+  systemd,
   systemdLibs,
   wrapGAppsHook3,
   xapp,
@@ -39,14 +40,18 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "cinnamon-session";
-  version = "6.6.4";
+  version = "6.8.0";
 
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "cinnamon-session";
     tag = finalAttrs.version;
-    hash = "sha256-rx7+tBXQ9kvnRYNxgF1QXyhk9NamUIjti/6GGrACYU0=";
+    hash = "sha256-DAJpmnWRYSJNUQ6S5jxQM5IrnbdImVQ/CR5UAAOcQG4=";
   };
+
+  patches = [
+    ./systemd-unit-dir.patch
+  ];
 
   buildInputs = [
     # meson.build
@@ -71,6 +76,7 @@ stdenv.mkDerivation (finalAttrs: {
     cinnamon-settings-daemon
     gsettings-desktop-schemas
     pythonEnv # for cinnamon-session-quit
+    systemd.dev # pkg-config data for the systemd user units
   ];
 
   nativeBuildInputs = [

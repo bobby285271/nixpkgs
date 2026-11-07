@@ -1,0 +1,16 @@
+--- a/meson.build
++++ b/meson.build
+@@ -61,10 +61,9 @@
+ systemd_opt = get_option('systemd')
+ systemd_dep = dependency('systemd', required: systemd_opt)
+ if systemd_dep.found()
+-  systemduserunitdir = systemd_dep.get_variable(
+-    pkgconfig: 'systemduserunitdir',
+-    default_value: join_paths(get_option('prefix'), 'lib', 'systemd', 'user')
+-  )
++  # Install units below our own prefix; systemd.pc points at the systemd
++  # package store path, which is read-only during the build.
++  systemduserunitdir = join_paths(get_option('prefix'), 'lib', 'systemd', 'user')
+   enable_systemd = true
+ else
+   enable_systemd = false
