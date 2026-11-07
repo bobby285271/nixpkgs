@@ -273,6 +273,10 @@ in
       programs.gnome-disks.enable = mkDefault (notExcluded pkgs.gnome-disk-utility);
       programs.gnome-terminal.enable = mkDefault (notExcluded pkgs.gnome-terminal);
 
+      systemd.packages = utils.removePackagesByName [
+        pkgs.clockenstein
+      ] config.environment.cinnamon.excludePackages;
+
       environment.systemPackages =
         with pkgs;
         utils.removePackagesByName [
@@ -281,6 +285,7 @@ in
           warpinator
 
           # cinnamon xapp
+          clockenstein
           xepub
           xviewer
           xreader
@@ -291,7 +296,6 @@ in
           # external apps shipped with linux-mint
           celluloid
           gnome-calculator
-          gnome-calendar
           gnome-screenshot
           file-roller
           gucharmap
