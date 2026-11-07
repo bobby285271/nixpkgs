@@ -1,16 +1,20 @@
 {
   fetchFromGitHub,
+  bubblewrap,
+  fontconfig,
   gdk-pixbuf,
   gobject-introspection,
   gtk3,
   intltool,
   isocodes,
+  libseccomp,
   meson,
   ninja,
   pkg-config,
   pulseaudio,
   python3,
   lib,
+  replaceVars,
   stdenv,
   systemdLibs,
   xkeyboard_config,
@@ -23,14 +27,21 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cinnamon-desktop";
-  version = "6.6.2";
+  version = "6.8.0";
 
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "cinnamon-desktop";
     tag = finalAttrs.version;
-    hash = "sha256-AcUJ9anKuvUAJKaQVHbkYShmrlSHG35gV/NIkPgJojk=";
+    hash = "sha256-E8mvVfdilMV0J01C8oUqRKuAx8mjHrMNMXSEioeCoRw=";
   };
+
+  patches = lib.optionals stdenv.hostPlatform.isLinux [
+    (replaceVars ./bubblewrap-paths.patch {
+      bubblewrap_bin = "${bubblewrap}/bin/bwrap";
+      inherit (builtins) storeDir;
+    })
+  ];
 
   outputs = [
     "out"
@@ -51,6 +62,11 @@ stdenv.mkDerivation (finalAttrs: {
     libxkbfile
     libxext
     libxrandr
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isLinux [
+    bubblewrap
+    fontconfig
+    libseccomp
   ];
 
   nativeBuildInputs = [
