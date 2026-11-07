@@ -75,10 +75,11 @@
           machine.screenshot("cinnamon_settings")
 
       with subtest("Check if screensaver works"):
-          # This is not supported at the moment.
-          # https://trello.com/b/HHs01Pab/cinnamon-wayland
           machine.execute("${su "cinnamon-screensaver-command -l >&2 &"}")
-          machine.wait_until_succeeds("journalctl -b --grep 'cinnamon-screensaver is disabled in wayland sessions'")
+          machine.wait_until_succeeds("${su "cinnamon-screensaver-command -q"} | grep 'The screensaver is active'")
+          machine.sleep(2)
+          machine.send_chars("${user.password}\n", delay=0.2)
+          machine.wait_until_succeeds("${su "cinnamon-screensaver-command -q"} | grep 'The screensaver is inactive'")
 
       with subtest("Open GNOME Terminal"):
           machine.succeed("${su "dbus-launch gnome-terminal"}")

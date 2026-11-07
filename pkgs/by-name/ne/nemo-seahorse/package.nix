@@ -3,56 +3,67 @@
   lib,
   fetchFromGitHub,
   meson,
-  pkg-config,
   ninja,
   glib,
   gtk3,
-  nemo,
-  dbus-glib,
-  libcryptui,
-  gcr_3,
-  libnotify,
+  python3,
+  wrapGAppsHook3,
   gnupg,
-  gpgme,
+  file-roller,
 }:
 
+let
+  pythonEnv = python3.withPackages (
+    pp: with pp; [
+      pygobject3
+      gpg
+    ]
+  );
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "nemo-seahorse";
-  version = "6.6.0";
+  version = "6.8.0";
 
   src = fetchFromGitHub {
     owner = "linuxmint";
     repo = "nemo-extensions";
     tag = finalAttrs.version;
-    hash = "sha256-tXeMkaCYnWzg+6ng8Tyg4Ms1aUeE3xiEkQ3tKEX6Vv8=";
+    hash = "sha256-dadQnR6YNm6rC6qT0MGssSXu37ST1kZQVGIupB0nA7Q=";
   };
 
   sourceRoot = "${finalAttrs.src.name}/nemo-seahorse";
 
   nativeBuildInputs = [
-    glib
     meson
-    pkg-config
     ninja
+    wrapGAppsHook3
   ];
 
   buildInputs = [
     glib
     gtk3
-    nemo
-    gpgme
-    dbus-glib
-    libcryptui
-    gcr_3
-    libnotify
-    gnupg
+    pythonEnv
   ];
+
+  postPatch = ''
+    substituteInPlace tool/nemo-seahorse-tool \
+      --replace-fail "#!/usr/bin/python3" "#!${pythonEnv}/bin/python3"
+  '';
+
+  preFixup = ''
+    gappsWrapperArgs+=(
+      --prefix PATH : "${
+        lib.makeBinPath [
+          gnupg
+          file-roller
+        ]
+      }"
+    )
+  '';
 
   postInstall = ''
     glib-compile-schemas $out/share/glib-2.0/schemas
   '';
-
-  env.PKG_CONFIG_LIBNEMO_EXTENSION_EXTENSIONDIR = "${placeholder "out"}/${nemo.extensiondir}";
 
   meta = {
     homepage = "https://github.com/linuxmint/nemo-extensions/tree/master/nemo-seahorse";
@@ -66,17 +77,6 @@ stdenv.mkDerivation (finalAttrs: {
           (nemo-with-extensions.override {
             extensions = [ nemo-seahorse ];
           })
-        ];
-
-        services.dbus.packages = with pkgs; [
-          libcryptui
-        ];
-
-        services.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [
-          nemo
-          gcr_3
-          libcryptui
-          nemo-seahorse
         ];
       }
       ```

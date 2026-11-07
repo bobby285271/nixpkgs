@@ -125,6 +125,7 @@ in
       systemd.packages =
         with pkgs;
         [
+          cinnamon
           cinnamon-session
         ]
         ++ utils.removePackagesByName [
@@ -158,8 +159,11 @@ in
 
       # Fix lockscreen
       security.pam.services = {
+        cinnamon = { };
         cinnamon-screensaver = { };
       };
+
+      services.udev.packages = [ pkgs.muffin ];
 
       environment.systemPackages =
         with pkgs;
