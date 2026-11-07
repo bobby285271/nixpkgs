@@ -43,7 +43,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "muffin";
-  version = "6.6.3";
+  version = "6.8.1";
 
   outputs = [
     "out"
@@ -55,7 +55,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "linuxmint";
     repo = "muffin";
     rev = finalAttrs.version;
-    hash = "sha256-PNL6PAZinds+kqCUCesJkTS+93juhm35sPE7RFUdxeU=";
+    hash = "sha256-GHmv612v9U5H491p4W928ewvxTeIdLk30U2lfepVkKo=";
   };
 
   patches = [
@@ -113,6 +113,9 @@ stdenv.mkDerivation (finalAttrs: {
     # Based on Mint's debian/rules.
     "-Dwayland_eglstream=true"
     "-Dxwayland_path=${lib.getExe xwayland}"
+    # udev.pc points at the udev package store path, which is read-only during
+    # the build.
+    "-Dudev_dir=${placeholder "out"}/lib/udev"
   ];
 
   postPatch = ''
