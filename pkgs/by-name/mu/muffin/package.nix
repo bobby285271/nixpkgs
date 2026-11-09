@@ -5,7 +5,6 @@
   replaceVars,
   cairo,
   cinnamon-desktop,
-  dbus,
   desktop-file-utils,
   egl-wayland,
   glib,
@@ -36,14 +35,14 @@
   wayland-protocols,
   wayland-scanner,
   wrapGAppsHook3,
+  xenity,
   xorg-server,
   xwayland,
-  zenity,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "muffin";
-  version = "6.6.3";
+  version = "6.8.1";
 
   outputs = [
     "out"
@@ -55,12 +54,12 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "linuxmint";
     repo = "muffin";
     rev = finalAttrs.version;
-    hash = "sha256-PNL6PAZinds+kqCUCesJkTS+93juhm35sPE7RFUdxeU=";
+    hash = "sha256-GHmv612v9U5H491p4W928ewvxTeIdLk30U2lfepVkKo=";
   };
 
   patches = [
     (replaceVars ./fix-paths.patch {
-      inherit zenity;
+      inherit xenity;
     })
   ];
 
@@ -79,7 +78,6 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     cairo
     cinnamon-desktop
-    dbus
     egl-wayland
     glib
     gtk3
@@ -113,6 +111,7 @@ stdenv.mkDerivation (finalAttrs: {
     # Based on Mint's debian/rules.
     "-Dwayland_eglstream=true"
     "-Dxwayland_path=${lib.getExe xwayland}"
+    "-Dudev_dir=${placeholder "out"}/lib/udev"
   ];
 
   postPatch = ''
